@@ -52,6 +52,7 @@ class Input extends Component{
                     <ControlLabel>Ingrese lugar o dirección</ControlLabel>
                     <FormControl
                         type="text"
+                        className="input"
                         value={this.state.value}
                         onChange={this.handleSearch}
                     />

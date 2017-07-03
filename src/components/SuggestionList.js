@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SuggestionItem from "./SuggestionItem";
+import styles from './SuggestionList.css'
 
 class SuggestionList extends Component{
 
@@ -21,7 +22,8 @@ class SuggestionList extends Component{
                             (option) => {
                                 return <SuggestionItem
                                     title={option.title}
-                                    subtitle={option.subtitle}
+                                    subTitle={option.subTitle}
+                                    key={option.title + "-" + option.subTitle}
                                 />
                             }
                         )

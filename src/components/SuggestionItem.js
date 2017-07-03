@@ -9,14 +9,15 @@ class SuggestionItem extends Component{
 
     static propTypes = {
         title : PropTypes.string.isRequired,
-        subtitle : PropTypes.string.isRequired
+        subTitle : PropTypes.string.isRequired
     };
 
     render(){
         return(
             <li>
                 <span>{this.props.title}</span>
-                <span>{this.props.subtitle}</span>
+                <br/>
+                <span>{this.props.subTitle}</span>
             </li>
         )
     }

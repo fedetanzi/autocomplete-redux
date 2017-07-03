@@ -6,6 +6,9 @@ import * as TodoActions from '../actions'
 import SuggestionList from "../components/SuggestionList";
 import { bindActionCreators } from 'redux'
 
+import style from './App.css'
+import {Col, Grid, Row} from "react-bootstrap";
+
 class App extends Component {
   static propTypes = {
       suggestions: PropTypes.array.isRequired,
@@ -27,9 +30,24 @@ class App extends Component {
 
   render() {
       return (
-          <div>
-              <Input suggest_delay={1000} {...this.props.actions}/>
-              <SuggestionList options={this.props.suggestions}/>
+          <div className="container">
+              <div className="input-div">
+                  <Grid>
+                      <Row className="show-grid">
+                          <Col xs={6} md={6}>
+                              <h1>Mis Lugares</h1>
+                              <Input suggest_delay={1000} {...this.props.actions}/>
+                              <div >
+                                  <SuggestionList options={this.props.suggestions}/>
+                              </div>
+                          </Col>
+                          <Col xs={6} md={6}>
+                              caca
+                          </Col>
+                      </Row>
+                  </Grid>
+
+              </div>
           </div>
       )
   }
