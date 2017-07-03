@@ -1,6 +1,8 @@
 import StreetSuggester from '../components/suggesters/StreetSuggester'
 import PlaceSuggester from '../components/suggesters/PlaceSuggester'
-import {SELECT_PLACE, INPUT_CHANGE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS} from '../constants/ActionTypes'
+
+
+import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS} from '../constants/ActionTypes'
 
 const suggesters = [
     new StreetSuggester("street", {}, "http://servicios.usig.buenosaires.gob.ar/normalizar/?"),
@@ -46,4 +48,11 @@ export const fetchSuggestions = text => dispatch => {
     });
 
 };
+
+export const clearSuggestions = () => ({
+    type: RECEIVE_SUGGESTIONS,
+    text: "",
+    suggestions: [],
+    receivedAt: Date.now()
+});
 

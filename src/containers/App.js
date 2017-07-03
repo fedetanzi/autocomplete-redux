@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { receiveSuggestions, fetchSuggestions } from '../actions'
 import Input from "../components/Input";
+import * as TodoActions from '../actions'
 import SuggestionList from "../components/SuggestionList";
+import { bindActionCreators } from 'redux'
 
 class App extends Component {
   static propTypes = {
       suggestions: PropTypes.array.isRequired,
       lastUpdated: PropTypes.number,
+      actions: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -29,7 +31,7 @@ class App extends Component {
   render() {
       return (
           <div>
-              <Input suggest_delay={1000} fetchSuggestions={this.props.fetchSuggestions} deleteAllSuggestions={this.props.deleteAllSuggestions}/>
+              <Input suggest_delay={1000} {...this.props.actions}/>
               <SuggestionList options={this.props.suggestions}/>
           </div>
       )
@@ -38,19 +40,13 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        suggestions: state.suggestions.currentSuggestions
+        suggestions: state.suggestions.currentSuggestions,
+        currentText : state.suggestions.currentText
     }
 };
 
-function mapDispatchToProps(dispatch){
-    return {
-        fetchSuggestions: (text) => {
-            dispatch(fetchSuggestions(text))
-        },
-        deleteAllSuggestions : () => {
-            dispatch(receiveSuggestions("",[]))
-        }
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(TodoActions, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

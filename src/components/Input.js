@@ -9,7 +9,8 @@ class Input extends Component{
 
     static propTypes = {
         fetchSuggestions : PropTypes.func.isRequired ,
-        deleteAllSuggestions : PropTypes.func.isRequired ,
+        clearSuggestions : PropTypes.func.isRequired ,
+        inputChange : PropTypes.func.isRequired ,
         suggest_delay : PropTypes.number.isRequired
     };
 
@@ -26,9 +27,10 @@ class Input extends Component{
     handleSearch(e) {
         const query = e.target.value;
         this.setState({ value : query  , lastInputTime: Date.now() });
+        this.props.inputChange(query);
         if (!query) {
             //Delete all suggestions
-            this.props.deleteAllSuggestions()
+            this.props.clearSuggestions()
         }else{
             //Fetch suggestions
             setTimeout(this.handleTimeOut,this.props.suggest_delay)
