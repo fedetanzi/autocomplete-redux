@@ -3,7 +3,7 @@
  */
 import {
     SELECT_PLACE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA
-} from '../actions'
+} from '../constants/ActionTypes'
 
 const initialState = {
     places: [],

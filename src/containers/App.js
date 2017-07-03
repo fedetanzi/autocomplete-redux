@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { selectSuggestion, fetchSuggestions } from '../actions'
+import { receiveSuggestions, fetchSuggestions } from '../actions'
 import Input from "../components/Input";
 import SuggestionList from "../components/SuggestionList";
 
@@ -30,8 +30,7 @@ class App extends Component {
   render() {
       return (
           <div>
-              <button onClick={() => this.handleClick()}></button>
-              <Input suggest_delay={1000} fetchSuggestions={this.props.fetchSuggestions}/>
+              <Input suggest_delay={1000} fetchSuggestions={this.props.fetchSuggestions} deleteAllSuggestions={this.props.deleteAllSuggestions}/>
               <SuggestionList options={this.props.suggestions}/>
           </div>
       )
@@ -49,6 +48,9 @@ function mapDispatchToProps(dispatch){
     return {
         fetchSuggestions: (text) => {
             dispatch(fetchSuggestions(text))
+        },
+        deleteAllSuggestions : () => {
+            dispatch(receiveSuggestions("",[]))
         }
     }
 }
