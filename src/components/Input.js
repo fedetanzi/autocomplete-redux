@@ -3,12 +3,17 @@
  */
 import React, { Component } from 'react'
 import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
+import PropTypes from 'prop-types'
 
 class Input extends Component{
 
+    static propTypes = {
+        fetchSuggestions : PropTypes.func.isRequired ,
+        suggest_delay : PropTypes.number.isRequired
+    };
+
     constructor(props){
         super(props);
-        this.suggest_delay = 1000;
         this.state = {
             value: "",
             lastInputTime : null,
@@ -20,12 +25,13 @@ class Input extends Component{
     handleSearch(e) {
         this.setState({ value : e.target.value  , lastInputTime: Date.now() });
         if (e.target.value ) {
-            setTimeout(this.handleTimeOut,this.suggest_delay)
+            setTimeout(this.handleTimeOut,this.props.suggest_delay)
         }
     }
 
     handleTimeOut(){
-        if(Date.now() - this.state.lastInputTime >= this.suggest_delay){
+        if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay){
+            this.props.fetchSuggestions(this.state.value)
         }
     }
 

@@ -32,7 +32,7 @@ class App extends Component {
       return (
           <div>
               <button onClick={() => this.handleClick()}></button>
-              <Input />
+              <Input suggest_delay={1000} fetchSuggestions={fetchSuggestions}/>
               <SuggestionList options={this.props.suggestions}/>
           </div>
       )
