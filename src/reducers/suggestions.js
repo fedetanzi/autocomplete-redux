@@ -7,7 +7,6 @@ import {
 
 const initialState = {
     currentSuggestions: [],
-    isFetching: false,
     currentText: "",
     currentSearch: ""
 };
@@ -17,14 +16,12 @@ const suggestions = (state = initialState, action) => {
         case RECEIVE_SUGGESTIONS:
             return Object.assign({}, state, {
                 ...state,
-                isFetching: false,
-                currentSuggestions: action.text === state.currentSearch ? state.currentSuggestions.concat(action.suggestions) : action.suggestions,
-                currentSearch: action.currentSearch
+                currentSuggestions: action.text === state.currentText ? (action.text === state.currentSearch ? state.currentSuggestions.concat(action.suggestions) : action.suggestions) : state.currentSuggestions,
             });
         case REQUEST_SUGGESTIONS:
             return Object.assign({}, state, {
                 ...state,
-                isFetching: true
+                currentSearch: action.currentSearch
             });
         case INPUT_CHANGE:
             return {

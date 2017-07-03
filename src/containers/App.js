@@ -7,7 +7,6 @@ import SuggestionList from "../components/SuggestionList";
 
 class App extends Component {
   static propTypes = {
-      isFetching: PropTypes.bool.isRequired,
       suggestions: PropTypes.array.isRequired,
       lastUpdated: PropTypes.number,
   };
@@ -38,10 +37,9 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-return {
-    isFetching: false,
-    suggestions: state.suggestions.currentSuggestions
-}
+    return {
+        suggestions: state.suggestions.currentSuggestions
+    }
 };
 
 function mapDispatchToProps(dispatch){
