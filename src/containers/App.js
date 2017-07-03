@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { selectSuggestion, fetchSuggestions } from '../actions'
 import Input from "../components/Input";
+import SuggestionList from "../components/SuggestionList";
 
 class App extends Component {
   static propTypes = {
@@ -27,10 +28,16 @@ class App extends Component {
   }
 
   render() {
+      const list = [
+          {title : "abc",subtitle : "pre"},
+          {title : "abcd",subtitle : "pred"},
+          {title : "abcde",subtitle : "predf"}
+          ];
       return (
           <div>
-            <button onClick={() => this.handleClick()}></button>
-            <Input />
+              <button onClick={() => this.handleClick()}></button>
+              <Input />
+              <SuggestionList options={list}/>
           </div>
       )
   }

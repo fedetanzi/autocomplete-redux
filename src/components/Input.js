@@ -2,7 +2,7 @@
  * Created by federicotanzi on 7/3/17.
  */
 import React, { Component } from 'react'
-import {Button, ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
+import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 
 class Input extends Component{
 
@@ -10,19 +10,28 @@ class Input extends Component{
         super(props);
         this.suggest_delay = 1000;
         this.state = {
-            value: '',
-            lastInputTime : 0
+            value: "",
+            lastInputTime : null,
         };
-        this.handleOnChange = this.handleOnChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleTimeOut = this.handleTimeOut.bind(this);
     }
 
-    handleOnChange(event) {
-        this.setState({ value: event.target.value });
+    handleSearch(e) {
+        this.setState({ value : e.target.value  , lastInputTime: Date.now() });
+        if (e.target.value ) {
+            setTimeout(this.handleTimeOut,this.suggest_delay)
+        }
+    }
+
+    handleTimeOut(){
+        if(Date.now() - this.state.lastInputTime >= this.suggest_delay){
+        }
     }
 
     render() {
         return (
-            <form>
+            <div>
                 <FormGroup
                     controlId="formBasicText"
                 >
@@ -30,14 +39,14 @@ class Input extends Component{
                     <FormControl
                         type="text"
                         value={this.state.value}
-                        placeholder="Enter text"
-                        onChange={this.handleOnChange}
+                        onChange={this.handleSearch}
                     />
                     <FormControl.Feedback />
                 </FormGroup>
-            </form>
+            </div>
         );
     }
+
 }
 
 export default Input
