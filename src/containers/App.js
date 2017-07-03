@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
+import Input from "../components/Input";
 
 class App extends Component {
   static propTypes = {
@@ -40,33 +41,12 @@ class App extends Component {
 
   render() {
     const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
-    const isEmpty = posts.length === 0;
-    return (
-      <div>
-        <Picker value={selectedReddit}
-                onChange={this.handleChange}
-                options={[ 'reactjs', 'frontend' ]} />
-        <p>
-          {lastUpdated &&
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
-            </span>
-          }
-          {!isFetching &&
-            <button onClick={this.handleRefreshClick}>
-              Refresh
-            </button>
-          }
-        </p>
-        {isEmpty
-          ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-              <Posts posts={posts} />
-            </div>
-        }
-      </div>
-    )
+      const isEmpty = posts.length === 0;
+      return (
+          <div>
+            <Input/>
+          </div>
+      )
   }
 }
 
