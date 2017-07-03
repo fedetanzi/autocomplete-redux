@@ -1,8 +1,12 @@
+import StreetSuggester from '../components/suggesters/StreetSuggester'
+
 export const REQUEST_SUGGESTIONS = 'REQUEST_SUGGESTIONS';
 export const RECEIVE_SUGGESTIONS = 'RECEIVE_SUGGESTIONS';
 export const SAVE_SUGGESTION = 'SAVE_SUGGESTION';
 export const SELECT_PLACE = 'SELECT_PLACE';
 export const RECEIVE_PLACE_DATA = 'RECEIVE_PLACE_DATA';
+
+const suggesters = [new StreetSuggester("street", {}, "http://servicios.usig.buenosaires.gob.ar/normalizar/?")];
 
 export const selectSuggestion = place => ({
     type: SELECT_PLACE,
@@ -27,14 +31,15 @@ export const requestSuggestions = text => ({
 export const receiveSuggestions = (text, json) => ({
   type: RECEIVE_SUGGESTIONS,
   text: text,
-  suggestions: json.instancias,
+  suggestions: json,
   receivedAt: Date.now()
 });
 
 export const fetchSuggestions = text => dispatch => {
-  dispatch(requestSuggestions(text));
-  return fetch(`http://epok.buenosaires.gob.ar/buscar/?start=0&limit=20&texto=libertador&tipo=ranking&totalFull=false&_=1499087979097`)
-    .then(response => response.json())
-    .then(json => dispatch(receiveSuggestions(text, json)))
+    dispatch(requestSuggestions(text));
+    suggesters.forEach((suggester) => {
+        suggester.getSuggestions(text, (text, items) => {dispatch(receiveSuggestions(text, items))}, 10);
+    });
+
 };
 

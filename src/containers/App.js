@@ -7,9 +7,10 @@ import SuggestionList from "../components/SuggestionList";
 
 class App extends Component {
   static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    lastUpdated: PropTypes.number,
-    dispatch: PropTypes.func.isRequired
+      isFetching: PropTypes.bool.isRequired,
+      suggestions: PropTypes.array.isRequired,
+      lastUpdated: PropTypes.number,
+      dispatch: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -24,20 +25,15 @@ class App extends Component {
     // }
   }
   handleClick (){
-    this.props.dispatch(fetchSuggestions("fede"))
+    this.props.dispatch(fetchSuggestions("libertad"))
   }
 
   render() {
-      const list = [
-          {title : "abc",subtitle : "pre"},
-          {title : "abcd",subtitle : "pred"},
-          {title : "abcde",subtitle : "predf"}
-          ];
       return (
           <div>
               <button onClick={() => this.handleClick()}></button>
               <Input />
-              <SuggestionList options={list}/>
+              <SuggestionList options={this.props.suggestions}/>
           </div>
       )
   }
@@ -45,7 +41,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
 return {
-  isFetching: false
+    isFetching: false,
+    suggestions: state.suggestions.currentSuggestions
 }
 };
 
