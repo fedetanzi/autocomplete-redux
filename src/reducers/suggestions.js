@@ -2,7 +2,7 @@
  * Created by federuiz on 7/3/17.
  */
 import {
-    REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS,INPUT_CHANGE
+    REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS, INPUT_CHANGE
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -16,18 +16,18 @@ const suggestions = (state = initialState, action) => {
         case RECEIVE_SUGGESTIONS:
             return Object.assign({}, state, {
                 ...state,
-                currentSuggestions: action.text === state.currentText ? (action.text === state.currentSearch ? state.currentSuggestions.concat(action.suggestions) : action.suggestions) : state.currentSuggestions,
+                currentSuggestions: action.text === state.currentText ? (action.text === state.currentSearch && action.text !== "" ? state.currentSuggestions.concat(action.suggestions) : action.suggestions) : state.currentSuggestions,
             });
         case REQUEST_SUGGESTIONS:
             return Object.assign({}, state, {
                 ...state,
-                currentSearch: action.currentSearch
+                currentSearch: action.text
             });
         case INPUT_CHANGE:
-            return {
+            return Object.assign({}, state, {
                 ...state,
                 currentText: action.text,
-            };
+            });
         default:
             return state
     }

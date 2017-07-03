@@ -24,9 +24,6 @@ class App extends Component {
     //   dispatch(fetchPostsIfNeeded(selectedReddit))
     // }
   }
-  handleClick (){
-    this.props.fetchSuggestions("libertad")
-  }
 
   render() {
       return (
