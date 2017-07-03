@@ -10,7 +10,6 @@ class App extends Component {
       isFetching: PropTypes.bool.isRequired,
       suggestions: PropTypes.array.isRequired,
       lastUpdated: PropTypes.number,
-      dispatch: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -25,14 +24,14 @@ class App extends Component {
     // }
   }
   handleClick (){
-    this.props.dispatch(fetchSuggestions("libertad"))
+    this.props.fetchSuggestions("libertad")
   }
 
   render() {
       return (
           <div>
               <button onClick={() => this.handleClick()}></button>
-              <Input suggest_delay={1000} fetchSuggestions={fetchSuggestions}/>
+              <Input suggest_delay={1000} fetchSuggestions={this.props.fetchSuggestions}/>
               <SuggestionList options={this.props.suggestions}/>
           </div>
       )
@@ -46,4 +45,12 @@ return {
 }
 };
 
-export default connect(mapStateToProps)(App)
+function mapDispatchToProps(dispatch){
+    return {
+        fetchSuggestions: (text) => {
+            dispatch(fetchSuggestions(text))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

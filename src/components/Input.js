@@ -31,7 +31,7 @@ class Input extends Component{
 
     handleTimeOut(){
         if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay){
-            this.props.fetchSuggestions(this.state.value)
+            this.props.fetchSuggestions(this.state.value);
         }
     }
 
@@ -41,7 +41,7 @@ class Input extends Component{
                 <FormGroup
                     controlId="formBasicText"
                 >
-                    <ControlLabel>Ingrese lugar o direccíon</ControlLabel>
+                    <ControlLabel>Ingrese lugar o dirección</ControlLabel>
                     <FormControl
                         type="text"
                         value={this.state.value}
