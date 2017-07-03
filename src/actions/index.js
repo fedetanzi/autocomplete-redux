@@ -1,50 +1,40 @@
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_REDDIT = 'SELECT_REDDIT'
-export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
+export const REQUEST_SUGGESTIONS = 'REQUEST_SUGGESTIONS';
+export const RECEIVE_SUGGESTIONS = 'RECEIVE_SUGGESTIONS';
+export const SAVE_SUGGESTION = 'SAVE_SUGGESTION';
+export const SELECT_PLACE = 'SELECT_PLACE';
+export const RECEIVE_PLACE_DATA = 'RECEIVE_PLACE_DATA';
 
-export const selectReddit = reddit => ({
-  type: SELECT_REDDIT,
-  reddit
-})
+export const selectSuggestion = place => ({
+    type: SELECT_PLACE,
+    selectedPlace: place
+});
 
-export const invalidateReddit = reddit => ({
-  type: INVALIDATE_REDDIT,
-  reddit
-})
+export const saveSuggestion = suggestion => ({
+    type: SAVE_SUGGESTION,
+    suggestion: suggestion
+});
 
-export const requestPosts = reddit => ({
-  type: REQUEST_POSTS,
-  reddit
-})
+export const receivePlaceData = details => ({
+    type: RECEIVE_PLACE_DATA,
+    details: details
+});
 
-export const receivePosts = (reddit, json) => ({
-  type: RECEIVE_POSTS,
-  reddit,
-  posts: json.data.children.map(child => child.data),
+export const requestSuggestions = text => ({
+  type: REQUEST_SUGGESTIONS,
+  text: text
+});
+
+export const receiveSuggestions = (text, json) => ({
+  type: RECEIVE_SUGGESTIONS,
+  text: text,
+  suggestions: json.instancias,
   receivedAt: Date.now()
-})
+});
 
-const fetchPosts = reddit => dispatch => {
-  dispatch(requestPosts(reddit))
-  return fetch(`https://www.reddit.com/r/${reddit}.json`)
+export const fetchSuggestions = text => dispatch => {
+  dispatch(requestSuggestions(text));
+  return fetch(`http://epok.buenosaires.gob.ar/buscar/?start=0&limit=20&texto=libertador&tipo=ranking&totalFull=false&_=1499087979097`)
     .then(response => response.json())
-    .then(json => dispatch(receivePosts(reddit, json)))
-}
+    .then(json => dispatch(receiveSuggestions(text, json)))
+};
 
-const shouldFetchPosts = (state, reddit) => {
-  const posts = state.postsByReddit[reddit]
-  if (!posts) {
-    return true
-  }
-  if (posts.isFetching) {
-    return false
-  }
-  return posts.didInvalidate
-}
-
-export const fetchPostsIfNeeded = reddit => (dispatch, getState) => {
-  if (shouldFetchPosts(getState(), reddit)) {
-    return dispatch(fetchPosts(reddit))
-  }
-}

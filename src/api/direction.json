@@ -1,0 +1,14 @@
+[
+  {
+    "altura": 300,
+    "cod_calle": 12137,
+    "cod_calle_cruce": null,
+    "cod_partido": "caba",
+    "direccion": "SANCHEZ DE LORIA 300, CABA",
+    "nombre_calle": "SANCHEZ DE LORIA",
+    "nombre_calle_cruce": "",
+    "nombre_localidad": "CABA",
+    "nombre_partido": "CABA",
+    "tipo": "calle_altura"
+  }
+]

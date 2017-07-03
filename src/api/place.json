@@ -1,0 +1,30 @@
+{
+  "totalFull": "2",
+  "clasesEncontradas": [{
+    "nombreId": "Dependencias Culturales -> Calesita",
+    "nombre": "Calesita",
+    "total": "1",
+    "id": "dependencias_culturales|28",
+    "nombreNorm": "calesita"
+  }, {
+    "nombreId": "Dependencias Culturales -> Centro Cultural",
+    "nombre": "Centro Cultural",
+    "total": "1",
+    "id": "dependencias_culturales|3",
+    "nombreNorm": "centro_cultural"
+  }],
+  "instancias": [{
+    "headline": "Centro <em>Cultural</em> <em>Marc\u00f3</em> del Pont",
+    "nombre": "Centro Cultural Marc\u00f3 del Pont",
+    "claseId": "dependencias_culturales|3",
+    "clase": "Centro Cultural",
+    "id": "dependencias_culturales|72"
+  }, {
+    "headline": "Calesita de la Alegr\u00eda de la Plaza Arist\u00f3bulo del Valle",
+    "nombre": "Calesita de la Alegr\u00eda de la Plaza Arist\u00f3bulo del Valle",
+    "claseId": "dependencias_culturales|28",
+    "clase": "Calesita",
+    "id": "dependencias_culturales|1639"
+  }],
+  "total": "2",
+}
