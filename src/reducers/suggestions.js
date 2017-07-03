@@ -16,7 +16,7 @@ const suggestions = (state = initialState, action) => {
             return Object.assign({}, state, {
                 ...state,
                 isFetching: false,
-                currentSuggestions: state.currentSuggestions.concat(action.suggestions),
+                currentSuggestions: action.suggestions,
             });
         case REQUEST_SUGGESTIONS:
             return Object.assign({}, state, {
