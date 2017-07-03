@@ -41,6 +41,13 @@ export const receiveSuggestions = (text, json) => ({
   receivedAt: Date.now()
 });
 
+export const clearSuggestions = () => ({
+    type: RECEIVE_SUGGESTIONS,
+    text: "",
+    suggestions: [],
+    receivedAt: Date.now()
+});
+
 export const fetchSuggestions = text => dispatch => {
     dispatch(requestSuggestions(text));
     suggesters.forEach((suggester) => {
@@ -49,10 +56,6 @@ export const fetchSuggestions = text => dispatch => {
 
 };
 
-export const clearSuggestions = () => ({
-    type: RECEIVE_SUGGESTIONS,
-    text: "",
-    suggestions: [],
-    receivedAt: Date.now()
-});
+
+
 

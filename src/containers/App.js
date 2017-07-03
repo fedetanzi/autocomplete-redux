@@ -42,7 +42,6 @@ class App extends Component {
                               </div>
                           </Col>
                           <Col xs={6} md={6}>
-                              caca
                           </Col>
                       </Row>
                   </Grid>

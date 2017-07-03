@@ -21,8 +21,7 @@ class SuggestionList extends Component{
                         this.props.options.map(
                             (option) => {
                                 return <SuggestionItem
-                                    title={option.title}
-                                    subTitle={option.subTitle}
+                                    suggestion={option}
                                     key={option.title + "-" + option.subTitle}
                                 />
                             }

@@ -8,16 +8,19 @@ import PropTypes from 'prop-types'
 class SuggestionItem extends Component{
 
     static propTypes = {
-        title : PropTypes.string.isRequired,
-        subTitle : PropTypes.string.isRequired
+        suggestion: PropTypes.object.isRequired,
+        saveSuggestion: PropTypes.func.isRequired
     };
 
+    handleClick(){
+        this.props.saveSuggestion(this.props.suggestion);
+    }
     render(){
         return(
-            <li>
-                <span>{this.props.title}</span>
+            <li onClick={() => this.handleClick()}>
+                <span>{this.props.suggestion.title}</span>
                 <br/>
-                <span>{this.props.subTitle}</span>
+                <span>{this.props.suggestion.subTitle}</span>
             </li>
         )
     }
