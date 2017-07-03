@@ -1,8 +1,6 @@
 import StreetSuggester from '../components/suggesters/StreetSuggester'
 import PlaceSuggester from '../components/suggesters/PlaceSuggester'
-
-const suggesters = [new StreetSuggester("street", {}, "http://servicios.usig.buenosaires.gob.ar/normalizar/?")];
-import {SELECT_PLACE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS} from '../constants/ActionTypes'
+import {SELECT_PLACE, INPUT_CHANGE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS} from '../constants/ActionTypes'
 
 const suggesters = [
     new StreetSuggester("street", {}, "http://servicios.usig.buenosaires.gob.ar/normalizar/?"),
@@ -12,6 +10,11 @@ const suggesters = [
 export const selectSuggestion = place => ({
     type: SELECT_PLACE,
     selectedPlace: place
+});
+
+export const inputChange = text => ({
+    type: INPUT_CHANGE,
+    text: text
 });
 
 export const saveSuggestion = suggestion => ({

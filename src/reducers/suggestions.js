@@ -3,12 +3,13 @@
  */
 import {
     REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS
-} from '../actions'
+} from '../constants/ActionTypes'
 
 const initialState = {
     currentSuggestions: [],
     isFetching: false,
-    currentText: ""
+    currentText: "",
+    currentSearch: ""
 };
 
 const suggestions = (state = initialState, action) => {
@@ -17,14 +18,19 @@ const suggestions = (state = initialState, action) => {
             return Object.assign({}, state, {
                 ...state,
                 isFetching: false,
-                currentSuggestions: action.text === state.currentText ? state.currentSuggestions.concat(action.suggestions) : action.suggestions,
-                currentText: action.text
+                currentSuggestions: action.text === state.currentSearch ? state.currentSuggestions.concat(action.suggestions) : action.suggestions,
+                currentSearch: action.currentSearch
             });
         case REQUEST_SUGGESTIONS:
             return Object.assign({}, state, {
                 ...state,
                 isFetching: true
             });
+        case INPUT_CHANGE:
+            return {
+                ...state,
+                currentText: action.text,
+            };
         default:
             return state
     }
