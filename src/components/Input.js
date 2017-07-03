@@ -11,13 +11,14 @@ class Input extends Component{
         fetchSuggestions : PropTypes.func.isRequired ,
         clearSuggestions : PropTypes.func.isRequired ,
         inputChange : PropTypes.func.isRequired ,
-        suggest_delay : PropTypes.number.isRequired
+        suggest_delay : PropTypes.number.isRequired,
+        text : PropTypes.string
     };
 
     constructor(props){
         super(props);
         this.state = {
-            value: "",
+            value: this.props.text || '',
             lastInputTime : null,
         };
         this.handleSearch = this.handleSearch.bind(this);
@@ -45,7 +46,7 @@ class Input extends Component{
 
     render() {
         return (
-            <div>
+            <div className="input-react">
                 <FormGroup
                     controlId="formBasicText"
                 >

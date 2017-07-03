@@ -1,19 +1,39 @@
 /**
  * Created by federuiz on 7/3/17.
  */
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const Posts = ({posts}) => (
-    <ul>
-        {posts.map((post, i) =>
-            <li key={i}>{post.title}</li>
-        )}
-    </ul>
-)
 
-Posts.propTypes = {
-    posts: PropTypes.array.isRequired
+class PlaceItem extends Component{
+
+    static propTypes = {
+        title : PropTypes.string.isRequired,
+        subTitle : PropTypes.string.isRequired,
+        details : {
+            comuna: PropTypes.string,
+            barrio: PropTypes.string,
+            comisaria: PropTypes.string,
+            area_hospitalaria: PropTypes.string,
+            region_sanitaria: PropTypes.string,
+            distrito_escolar: PropTypes.string,
+            seccion_catastral: PropTypes.string,
+            distrito_economico: PropTypes.string,
+            codigo_de_planeamiento_urbano: PropTypes.string,
+            partido_amba: PropTypes.string,
+            localidad_amba: PropTypes.string
+        }
+    };
+
+    render(){
+        return(
+            <li>
+                <span>{this.props.title}</span>
+                <br/>
+                <span>{this.props.subTitle}</span>
+            </li>
+        )
+    }
 }
 
-export default Posts
+export default PlaceItem
