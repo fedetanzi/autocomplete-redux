@@ -1,4 +1,5 @@
 import StreetSuggester from '../components/suggesters/StreetSuggester'
+import PlaceSuggester from '../components/suggesters/PlaceSuggester'
 
 export const REQUEST_SUGGESTIONS = 'REQUEST_SUGGESTIONS';
 export const RECEIVE_SUGGESTIONS = 'RECEIVE_SUGGESTIONS';
@@ -6,7 +7,10 @@ export const SAVE_SUGGESTION = 'SAVE_SUGGESTION';
 export const SELECT_PLACE = 'SELECT_PLACE';
 export const RECEIVE_PLACE_DATA = 'RECEIVE_PLACE_DATA';
 
-const suggesters = [new StreetSuggester("street", {}, "http://servicios.usig.buenosaires.gob.ar/normalizar/?")];
+const suggesters = [
+    new StreetSuggester("street", {}, "http://servicios.usig.buenosaires.gob.ar/normalizar/?"),
+    new PlaceSuggester("place", {}, "http://epok.buenosaires.gob.ar/buscar/?")
+];
 
 export const selectSuggestion = place => ({
     type: SELECT_PLACE,

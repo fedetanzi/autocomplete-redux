@@ -31,7 +31,7 @@ class Input extends Component{
 
     handleTimeOut(){
         if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay){
-            this.props.fetchSuggestions(this.state.value);
+            this.props.fetchSuggestions(this.state.value)
         }
     }
 
