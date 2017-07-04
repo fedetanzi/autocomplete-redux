@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styles from './PlaceDetails.css'
 import {Col, Grid, Jumbotron, Row} from "react-bootstrap";
+import FaArrow from 'react-icons/lib/fa/arrow-left';
 import * as Actions from '../actions'
 import { bindActionCreators } from 'redux'
 
@@ -38,16 +39,16 @@ class DetailsPage extends Component {
     render(){
         const title =
             <div>
-                <button onClick={() => this.handleClick()}>
-                    Undo
-                </button>
                 <Row>
-                    <Col lg={12}>
+                    <Col lg={1} className="vcenter arrow-item">
+                        <FaArrow onClick={() => this.handleClick()} size={32} name='arrow-left'/>
+                    </Col >
+                    <Col lg={11} className="vcenter">
                         <h1>{this.props.place.title}</h1>
                     </Col>
                 </Row>
                 <Row>
-                    <Col lg={12}>
+                    <Col lg={12} lgOffset={1}>
                         <h3>{this.props.place.subTitle}</h3>
                     </Col>
                 </Row>
@@ -79,7 +80,7 @@ class DetailsPage extends Component {
         else {
             rows.push(
                 <Row>
-                    <Col lg={12}>
+                    <Col lg={10}>
                         <h4>No se han encontrado datos sobre el lugar</h4>
                     </Col>
                 </Row>
@@ -90,9 +91,14 @@ class DetailsPage extends Component {
             <div>
                 <Grid >
                     {title}
-                    <Jumbotron>
-                        {rows}
-                    </Jumbotron>
+                    <Row>
+                        <Col lg={10} lgOffset={1}>
+                            <Jumbotron>
+                                {rows}
+                            </Jumbotron>
+                        </Col>
+                    </Row>
+
                 </Grid>
             </div>
         )

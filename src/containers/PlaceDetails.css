@@ -5,3 +5,11 @@
 .detail-item:hover {
     background-color: rgba(91, 91, 91, 0.1);
 }
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.arrow-item{
+    padding-top: 10px;
+}
