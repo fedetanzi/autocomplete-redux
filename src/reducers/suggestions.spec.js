@@ -11,7 +11,8 @@ describe ("suggestions reducer", () => {
         ).toEqual({
                 currentSuggestions: [],
                 currentText: "",
-                currentSearch: ""
+                currentSearch: "",
+                maxSuggestions: 10
             }
         )
     });
@@ -46,7 +47,7 @@ describe ("suggestions reducer", () => {
         ).toEqual({
             currentSuggestions: [],
             currentText: "libertador",
-            currentSearch: "libertador"
+            currentSearch: ""
         })
     });
 
@@ -148,6 +149,48 @@ describe ("suggestions reducer", () => {
             currentSuggestions: [],
             currentText: "libertador",
             currentSearch: "libertador"
+        });
+        // Try to add more suggestions than the limit.
+        expect(
+            suggestions({
+                currentSuggestions: [],
+                currentText: "libertador",
+                currentSearch: "libertador",
+                maxSuggestions: 2,
+            }, {
+                type: types.RECEIVE_SUGGESTIONS,
+                suggestions: [
+                    {
+                        title: 'My address 1234',
+                        subtitle: "My region"
+                    },
+                    {
+                        title: 'My address 1234',
+                        subtitle: "My region"
+                    },
+                    {
+                        title: 'My address 1234',
+                        subtitle: "My region"
+                    },
+                    {
+                        title: 'My address 1234',
+                        subtitle: "My region"
+                    }
+                ],
+                text: "libertador"
+            })
+        ).toEqual({
+            currentSuggestions: [{
+                title: 'My address 1234',
+                subtitle: "My region"
+            },
+                {
+                    title: 'My address 1234',
+                    subtitle: "My region"
+                }],
+            currentText: "libertador",
+            currentSearch: "libertador",
+            maxSuggestions: 2,
         })
     });
 });
