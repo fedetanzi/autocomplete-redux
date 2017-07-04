@@ -1,6 +1,6 @@
 import StreetSuggester from '../components/suggesters/StreetSuggester'
 import PlaceSuggester from '../components/suggesters/PlaceSuggester'
-import {COORDINATES_URL, STREET_URL, PLACE_URL, DETAILS_URL} from '../constants/ApiUrls'
+import {STREET_URL, PLACE_URL, DETAILS_URL} from '../constants/ApiUrls'
 
 import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS} from '../constants/ActionTypes'
 
@@ -37,6 +37,11 @@ export const saveSuggestion = suggestion => (dispatch, getState) => {
                 return getDetails(detailsUrl, suggestion, dispatch);
             })
     }
+    // If the suggestion doesn't have id nor coordinates, just save it.
+    dispatch({
+        type: SAVE_SUGGESTION,
+        suggestion: suggestion
+    });
 };
 // The getObjectContent API returns a POINT string with the coordinates in it.
 const getCoordinatesFromPoint = (pointString) => {
@@ -90,6 +95,11 @@ export const fetchSuggestions = text => dispatch => {
     });
 
 };
+
+export const selectPlace = place => ({
+    type: SELECT_PLACE,
+    selectedPlace: place
+});
 
 
 

@@ -6,7 +6,7 @@ import {
 } from '../constants/ActionTypes'
 
 const initialState = {
-    places: [],
+    myPlaces: [],
     selectedPlace: {}
 };
 
@@ -15,7 +15,7 @@ const places = (state = initialState, action) => {
         case SAVE_SUGGESTION:
             return {
                 ...state,
-                places: state.places.concat([action.suggestion])
+                myPlaces: state.myPlaces.concat([action.suggestion])
             };
         case SELECT_PLACE:
             return {

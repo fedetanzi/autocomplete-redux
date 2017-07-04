@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux'
 
 import style from './App.css'
 import {Col, Grid, Row} from "react-bootstrap";
+import PlaceList from "../components/PlaceList";
 
 class App extends Component {
   static propTypes = {
@@ -42,6 +43,7 @@ class App extends Component {
                               </div>
                           </Col>
                           <Col xs={6} md={6}>
+                              <PlaceList places={this.props.places} {...this.props.actions}/>
                           </Col>
                       </Row>
                   </Grid>
@@ -55,7 +57,8 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         suggestions: state.suggestions.currentSuggestions,
-        currentText : state.suggestions.currentText
+        currentText : state.suggestions.currentText,
+        places: state.places.myPlaces,
     }
 };
 

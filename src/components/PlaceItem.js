@@ -8,29 +8,19 @@ import PropTypes from 'prop-types'
 class PlaceItem extends Component{
 
     static propTypes = {
-        title : PropTypes.string.isRequired,
-        subTitle : PropTypes.string.isRequired,
-        details : {
-            comuna: PropTypes.string,
-            barrio: PropTypes.string,
-            comisaria: PropTypes.string,
-            area_hospitalaria: PropTypes.string,
-            region_sanitaria: PropTypes.string,
-            distrito_escolar: PropTypes.string,
-            seccion_catastral: PropTypes.string,
-            distrito_economico: PropTypes.string,
-            codigo_de_planeamiento_urbano: PropTypes.string,
-            partido_amba: PropTypes.string,
-            localidad_amba: PropTypes.string
-        }
+        place: PropTypes.object.isRequired,
+        onclick: PropTypes.func.isRequired
     };
 
+    handleClick (){
+        this.props.onclick(this.props.place);
+    }
     render(){
         return(
-            <li>
-                <span>{this.props.title}</span>
+            <li onClick={() => this.handleClick()}>
+                <span>{this.props.place.title}</span>
                 <br/>
-                <span>{this.props.subTitle}</span>
+                <span>{this.props.place.subTitle}</span>
             </li>
         )
     }
