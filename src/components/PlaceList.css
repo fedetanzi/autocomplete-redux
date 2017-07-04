@@ -24,3 +24,11 @@ hr {
     right: 15px;
     top: 10px;
 }
+.delete-icon {
+    position: relative;
+    right: 30px;
+    top: 10px;
+}
+.delete-icon:hover{
+    color: red;
+}
