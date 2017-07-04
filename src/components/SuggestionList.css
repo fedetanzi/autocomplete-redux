@@ -1,3 +1,16 @@
 ul {
     list-style-type: none;
+    padding: 0;
+}
+.suggestions-div {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+li{
+    padding: 10px;
+}
+li:hover {
+    cursor: pointer;
+    background-color: #1f538b;
+    color: white;
 }

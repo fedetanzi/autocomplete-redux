@@ -23,9 +23,4 @@ export default class Suggester {
             return suggestion;
         })
     };
-
-    requestSuggestions(url, text, callback){
-
-    }
-
 }

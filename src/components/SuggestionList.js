@@ -18,7 +18,7 @@ class SuggestionList extends Component{
     render(){
 
         return(
-            <div>
+            <div className="suggestions-div">
                 <ul>
                     {
                         this.props.options.map(
