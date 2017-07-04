@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 class PlaceDetails extends Component{
 
     static propTypes = {
-        place : PropTypes.object.isRequired = {
             comuna: PropTypes.string,
             barrio: PropTypes.string,
             comisaria: PropTypes.string,
@@ -20,7 +19,6 @@ class PlaceDetails extends Component{
             codigo_de_planeamiento_urbano: PropTypes.string,
             partido_amba: PropTypes.string,
             localidad_amba: PropTypes.string
-        }
     };
 
     render(){

@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     myPlaces: [],
-    selectedPlace: {}
+    selectedPlace: null
 };
 
 const places = (state = initialState, action) => {
