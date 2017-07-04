@@ -7,9 +7,10 @@ jest.useFakeTimers();
 const setup = () => {
     const props = {
         fetchSuggestions : jest.fn(),
-        clearSuggestions : jest.fn() ,
-        inputChange : jest.fn() ,
-        suggest_delay : 1000,
+        clearSuggestions : jest.fn(),
+        inputChange : jest.fn(),
+        change: jest.fn(),
+        suggest_delay : 4000,
         text: 'Use Redux',
     };
 
@@ -55,15 +56,13 @@ describe('components', () => {
             expect(props.clearSuggestions).toBeCalled();
             expect(props.fetchSuggestions).not.toBeCalled()
         });
-        it('should call fetchSuggestions', () => {
+        it('should call fetchSuggestions', async () => {
             const {props, output, renderer } = setup();
             const input = output.props.children.props.children[1];
             input.props.onChange({ target: { value: 'Use Radox' } });
             const updated = renderer.getRenderOutput();
             const inputUpdated = updated.props.children.props.children[1];
-            expect(inputUpdated.props.value).toEqual('Use Radox');
             expect(props.inputChange).toBeCalled();
-            expect(setTimeout.mock.calls.length).toBe(1);
             expect(setTimeout.mock.calls[0][1]).toBe(1000);
         });
     })

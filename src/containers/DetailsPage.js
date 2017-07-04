@@ -40,15 +40,15 @@ class DetailsPage extends Component {
         const title =
             <div>
                 <Row>
-                    <Col lg={1} className="vcenter arrow-item">
+                    <Col xs={1} md={1} lg={1} className="vcenter arrow-item">
                         <FaArrow onClick={() => this.handleClick()} size={32} name='arrow-left'/>
                     </Col >
-                    <Col lg={11} className="vcenter">
+                    <Col xs={10} md={10} lg={10} className="vcenter">
                         <h1>{this.props.place.title}</h1>
                     </Col>
                 </Row>
                 <Row>
-                    <Col lg={12} lgOffset={1}>
+                    <Col lg={12} lgOffset={1} md={12} mdOffset={1} xs={12}  xsOffset={1}>
                         <h3>{this.props.place.subTitle}</h3>
                     </Col>
                 </Row>
@@ -57,7 +57,7 @@ class DetailsPage extends Component {
 
         let rows = [
             <Row key="datos">
-                <Col lg={12} md={12}>
+                <Col lg={12} md={12} xs={12}>
                     <h3>Datos de interes</h3>
                 </Col>
             </Row>
@@ -92,7 +92,7 @@ class DetailsPage extends Component {
                 <Grid >
                     {title}
                     <Row>
-                        <Col lg={10} lgOffset={1}>
+                        <Col lg={10} lgOffset={1} xs={10} xsOffset={1} md={10} mdOffset={1}>
                             <Jumbotron>
                                 {rows}
                             </Jumbotron>
