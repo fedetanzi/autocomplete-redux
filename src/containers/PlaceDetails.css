@@ -13,3 +13,6 @@
 .arrow-item{
     padding-top: 10px;
 }
+.arrow-item svg:hover{
+    cursor: pointer;
+}

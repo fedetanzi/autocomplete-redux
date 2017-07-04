@@ -56,17 +56,17 @@ class DetailsPage extends Component {
             ;
 
         let rows = [
-            <Row key="datos">
-                <Col lg={12} md={12} xs={12}>
+            <Row key="data-title">
+                <Col lg={12} md={12}>
                     <h3>Datos de interes</h3>
                 </Col>
             </Row>
         ];
         if (this.props.place.details) {
             const regex = new RegExp("_", 'g');
-            for (let [k, v] of Object.entries(this.props.place.details)) {
+            for (let [k, v, index] of Object.entries(this.props.place.details)) {
                 rows.push(
-                    <Row key={k + v} className="detail-item">
+                    <Row key={k + v + index} className="detail-item">
                         <Col xs={6} md={6}>
                             <h4>{k.replace(regex, " ").split(" ").map((d) => d[0].toUpperCase() + d.substr(1, d.length)).join(" ")}:</h4>
                         </Col>
@@ -79,7 +79,7 @@ class DetailsPage extends Component {
         }
         else {
             rows.push(
-                <Row>
+                <Row key="no-data">
                     <Col lg={10}>
                         <h4>No se han encontrado datos sobre el lugar</h4>
                     </Col>

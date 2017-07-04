@@ -2,7 +2,7 @@ import StreetSuggester from '../components/suggesters/StreetSuggester'
 import PlaceSuggester from '../components/suggesters/PlaceSuggester'
 import {STREET_URL, PLACE_URL, DETAILS_URL} from '../constants/ApiUrls'
 
-import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS} from '../constants/ActionTypes'
+import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS, DELETE_PLACE} from '../constants/ActionTypes'
 
 const suggesters = [
     new StreetSuggester("street", {maxSuggestions: 10}, STREET_URL),
@@ -100,6 +100,10 @@ export const selectPlace = place => ({
     selectedPlace: place
 });
 
+export const deletePlace = place => ({
+    type: DELETE_PLACE,
+    selectedPlace: place
+});
 
 
 
