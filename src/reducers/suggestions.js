@@ -7,7 +7,8 @@ const initialState = {
     currentSuggestions: [],
     currentText: "",
     currentSearch: "",
-    maxSuggestions: 10
+    maxSuggestions: 10,
+    loadingSuggestions: false,
 };
 
 const suggestions = (state = initialState, action) => {
@@ -20,11 +21,13 @@ const suggestions = (state = initialState, action) => {
                         (state.currentSuggestions.concat(action.suggestions)).slice(0, state.maxSuggestions)
                         : action.suggestions.slice(0, state.maxSuggestions))
                     : state.currentSuggestions,
-                currentSearch: action.text === state.currentText ? action.text : state.currentSearch
+                currentSearch: action.text === state.currentText ? action.text : state.currentSearch,
+                loadingSuggestions: false,
             });
         case REQUEST_SUGGESTIONS:
             return Object.assign({}, state, {
                 ...state,
+                loadingSuggestions: true,
             });
         case INPUT_CHANGE:
             return Object.assign({}, state, {

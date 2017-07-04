@@ -2,7 +2,7 @@ import StreetSuggester from '../components/suggesters/StreetSuggester'
 import PlaceSuggester from '../components/suggesters/PlaceSuggester'
 import {STREET_URL, PLACE_URL, DETAILS_URL} from '../constants/ApiUrls'
 
-import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS, DELETE_PLACE, STREET_TYPE, PLACE_TYPE} from '../constants/ActionTypes'
+import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS, DELETE_PLACE, STREET_TYPE, PLACE_TYPE, REQUEST_PLACE_DATA} from '../constants/ActionTypes'
 
 const suggesters = [
     new StreetSuggester("street", {maxSuggestions: 10}, STREET_URL, STREET_TYPE),
@@ -21,6 +21,7 @@ export const inputChange = text => ({
 
 export const saveSuggestion = suggestion => (dispatch, getState) => {
     console.log ("saving");
+    dispatch(requestPlaceData());
     // The street suggestions already contain the coordinates, but the places suggestions don't
     if (suggestion.coordinates) {
         const detailsUrl = `${DETAILS_URL}x=${suggestion.coordinates.x}&y=${suggestion.coordinates.y}`;
@@ -68,7 +69,9 @@ export const receivePlaceData = details => ({
     type: RECEIVE_PLACE_DATA,
     details: details
 });
-
+export const requestPlaceData = () => ({
+    type: REQUEST_PLACE_DATA,
+});
 export const requestSuggestions = text => ({
   type: REQUEST_SUGGESTIONS,
   text: text
