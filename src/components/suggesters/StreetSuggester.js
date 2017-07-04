@@ -5,8 +5,8 @@ import Suggester from './Suggester'
 
 export default class StreetSuggester extends Suggester{
 
-    constructor(name, options, apiHost){
-        super(name, options, apiHost);
+    constructor(name, options, apiHost, type){
+        super(name, options, apiHost, type);
         super.setMappingRule({title: "direccion", subTitle: "tipo", coordinates: "coordenadas"})
     }
 

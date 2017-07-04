@@ -5,3 +5,5 @@ export const SELECT_PLACE = 'SELECT_PLACE';
 export const RECEIVE_PLACE_DATA = 'RECEIVE_PLACE_DATA';
 export const INPUT_CHANGE = 'INPUT_CHANGE';
 export const DELETE_PLACE = 'DELETE_PLACE';
+export const STREET_TYPE = 'STREET_TYPE';
+export const PLACE_TYPE = 'PLACE_TYPE';

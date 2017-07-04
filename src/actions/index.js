@@ -2,11 +2,11 @@ import StreetSuggester from '../components/suggesters/StreetSuggester'
 import PlaceSuggester from '../components/suggesters/PlaceSuggester'
 import {STREET_URL, PLACE_URL, DETAILS_URL} from '../constants/ApiUrls'
 
-import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS, DELETE_PLACE} from '../constants/ActionTypes'
+import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS, DELETE_PLACE, STREET_TYPE, PLACE_TYPE} from '../constants/ActionTypes'
 
 const suggesters = [
-    new StreetSuggester("street", {maxSuggestions: 10}, STREET_URL),
-    new PlaceSuggester("place", {maxSuggestions: 10}, PLACE_URL)
+    new StreetSuggester("street", {maxSuggestions: 10}, STREET_URL, STREET_TYPE),
+    new PlaceSuggester("place", {maxSuggestions: 10}, PLACE_URL, PLACE_TYPE)
 ];
 
 export const selectSuggestion = place => ({
@@ -88,10 +88,10 @@ export const clearSuggestions = () => ({
     receivedAt: Date.now()
 });
 
-export const fetchSuggestions = text => dispatch => {
+export const fetchSuggestions = (text, type) => dispatch => {
     dispatch(requestSuggestions(text));
     suggesters.forEach((suggester) => {
-        suggester.getSuggestions(text, (text, items) => {dispatch(receiveSuggestions(text, items))});
+        if (suggester.getType() === type) suggester.getSuggestions(text, (text, items) => {dispatch(receiveSuggestions(text, items))});
     });
 };
 
