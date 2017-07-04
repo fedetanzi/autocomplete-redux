@@ -52,7 +52,7 @@ const mapStateToProps = state => {
     return {
         suggestions: state.suggestions.currentSuggestions,
         currentText : state.suggestions.currentText,
-        places: state.places.myPlaces,
+        places: state.places.present.myPlaces
     }
 };
 

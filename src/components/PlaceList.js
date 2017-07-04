@@ -18,16 +18,16 @@ class PlaceList extends Component{
     }
 
     render(){
-        return(
-            <div>
-                <ul>
-                    { this.props.places.map ((place, index) =>
-                        <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)}/>
-                     )
-                    }
-                </ul>
-            </div>
-        )
+            const placesView = this.props.places.map ((place, index) =>
+                <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)}/>
+            );
+            return(
+                <div>
+                    <ul>
+                        {placesView}
+                    </ul>
+                </div>
+            )
     }
 }
 

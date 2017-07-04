@@ -1,16 +1,9 @@
-/**
- * Created by federuiz on 7/3/17.
- */
+import undoable from 'redux-undo'
 import {
     SELECT_PLACE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA
 } from '../constants/ActionTypes'
 
-const initialState = {
-    myPlaces: [],
-    selectedPlace: null
-};
-
-const places = (state = initialState, action) => {
+const places = (state = {myPlaces: [], selectedPlace: null}, action) => {
     switch (action.type) {
         case SAVE_SUGGESTION:
             return {
@@ -32,4 +25,4 @@ const places = (state = initialState, action) => {
     }
 };
 
-export default places
+export default undoable(places)
