@@ -23,8 +23,8 @@ export const saveSuggestion = suggestion => (dispatch, getState) => {
     console.log ("saving");
     // The street suggestions already contain the coordinates, but the places suggestions don't
     if (suggestion.coordinates) {
-        const coordinatesUrl = `${DETAILS_URL}x=${suggestion.coordinates.x}&y=${suggestion.coordinates.y}`;
-        return getCoordinates(coordinatesUrl, suggestion, dispatch);
+        const detailsUrl = `${DETAILS_URL}x=${suggestion.coordinates.x}&y=${suggestion.coordinates.y}`;
+        return getDetails(detailsUrl, suggestion, dispatch);
     }
     // We need the suggestion id to get its coordinates
     if (suggestion.id) {
@@ -33,8 +33,8 @@ export const saveSuggestion = suggestion => (dispatch, getState) => {
             .then (response => response.json())
             .then (json => {
                 suggestion.coordinates = getCoordinatesFromPoint(json.ubicacion.centroide);
-                const coordinatesUrl = `${DETAILS_URL}x=${suggestion.coordinates.x}&y=${suggestion.coordinates.y}`;
-                return getCoordinates(coordinatesUrl, suggestion, dispatch);
+                const detailsUrl = `${DETAILS_URL}x=${suggestion.coordinates.x}&y=${suggestion.coordinates.y}`;
+                return getDetails(detailsUrl, suggestion, dispatch);
             })
     }
 };
@@ -47,7 +47,7 @@ const getCoordinatesFromPoint = (pointString) => {
     }
 };
 
-const getCoordinates = (url, suggestion, dispatch) => {
+const getDetails = (url, suggestion, dispatch) => {
     return fetch(url)
         .then(response => response.json())
         .then(json => {
