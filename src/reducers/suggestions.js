@@ -22,7 +22,7 @@ const suggestions = (state = initialState, action) => {
                         (state.currentSuggestions.concat(action.suggestions)).slice(0, state.maxSuggestions)
                         : action.suggestions.slice(0, state.maxSuggestions))
                     : state.currentSuggestions,
-                currentSearch: action.text
+                currentSearch: action.text === state.currentText ? action.text : state.currentSearch
             });
         case REQUEST_SUGGESTIONS:
             return Object.assign({}, state, {
