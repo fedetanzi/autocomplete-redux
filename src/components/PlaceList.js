@@ -16,14 +16,15 @@ class PlaceList extends Component{
     handlePlaceClick (place){
         this.props.selectPlace(place);
     }
+
     render(){
-        const placesView = this.props.places.map ((place, index) =>
-            <PlaceItem place={place} key={place.title + "" + index} onclick={() => this.handlePlaceClick(place)}/>
-        );
         return(
             <div>
                 <ul>
-                    {placesView}
+                    { this.props.places.map ((place, index) =>
+                        <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)}/>
+                     )
+                    }
                 </ul>
             </div>
         )
