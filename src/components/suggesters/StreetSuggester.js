@@ -10,8 +10,8 @@ export default class StreetSuggester extends Suggester{
         super.setMappingRule({title: "direccion", subTitle: "nombre_localidad", coordinates: "coordenadas"})
     }
 
-    getSuggestions = (text, callback, maxSuggestions) => {
-        const url = `${this.apiHost}direccion=${text}&maxOptions=${maxSuggestions}&geocodificar=true`;
+    getSuggestions = (text, callback) => {
+        const url = `${this.apiHost}direccion=${text}&maxOptions=${this.options.maxSuggestions}&geocodificar=true`;
         return fetch(url)
             .then(response => response.json())
             .then(json => super.mapAttributes(json.direccionesNormalizadas))

@@ -7,7 +7,6 @@ export default class Suggester {
     constructor (name, options, apiHost){
         this.name = name;
         this.options = options;
-        this.suggestions = [];
         this.apiHost = apiHost;
     }
     setMappingRule (mappingRule) {

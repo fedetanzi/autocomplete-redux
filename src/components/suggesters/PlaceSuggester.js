@@ -10,20 +10,11 @@ export default class PlaceSuggester extends Suggester{
         super.setMappingRule({title: "nombre", subTitle: "clase", id: "id"})
     }
 
-    getSuggestions = (text, callback, maxSuggestions) => {
-        const url = `${this.apiHost}buscar/?texto=${text}&limit=${maxSuggestions}`;
+    getSuggestions = (text, callback) => {
+        const url = `${this.apiHost}buscar/?texto=${text}&limit=${this.options.maxSuggestions}`;
         return fetch(url)
             .then(response => response.json())
             .then(json => {
-                // let promises = json.instancias.map ((place) => {
-                //     return fetch (`${this.apiHost}getObjectContent/?id=${place.id}`)
-                //         .then (response => response.json())
-                //         .then (json => {
-                //             place.direction = json.direccionNormalizada;
-                //             return place;
-                //         })
-                // });
-                // return Promise.all (promises).then (values => super.mapAttributes(values));
                 return super.mapAttributes(json.instancias)
             })
             .then(items => callback(text, items))

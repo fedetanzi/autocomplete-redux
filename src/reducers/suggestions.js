@@ -8,7 +8,8 @@ import {
 const initialState = {
     currentSuggestions: [],
     currentText: "",
-    currentSearch: ""
+    currentSearch: "",
+    maxSuggestions: 10
 };
 
 const suggestions = (state = initialState, action) => {
@@ -16,7 +17,11 @@ const suggestions = (state = initialState, action) => {
         case RECEIVE_SUGGESTIONS:
             return Object.assign({}, state, {
                 ...state,
-                currentSuggestions: action.text === state.currentText ? (action.text === state.currentSearch && action.text !== "" ? state.currentSuggestions.concat(action.suggestions) : action.suggestions) : state.currentSuggestions,
+                currentSuggestions: action.text === state.currentText ?
+                    (action.text === state.currentSearch && action.text !== "" ?
+                        (state.currentSuggestions.concat(action.suggestions)).slice(0, state.maxSuggestions)
+                        : action.suggestions.slice(0, state.maxSuggestions))
+                    : state.currentSuggestions,
                 currentSearch: action.text
             });
         case REQUEST_SUGGESTIONS:

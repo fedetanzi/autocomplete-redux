@@ -9,7 +9,7 @@ class SuggestionItem extends Component{
 
     static propTypes = {
         suggestion: PropTypes.object.isRequired,
-        click: PropTypes.func.isRequired
+        click: PropTypes.func.isRequired,
     };
 
     handleClick(){

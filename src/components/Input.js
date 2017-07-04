@@ -12,7 +12,8 @@ class Input extends Component{
         clearSuggestions : PropTypes.func.isRequired ,
         inputChange : PropTypes.func.isRequired ,
         suggest_delay : PropTypes.number.isRequired,
-        text : PropTypes.string
+        text : PropTypes.string,
+        change: PropTypes.func.isRequired,
     };
 
     constructor(props){
@@ -34,7 +35,8 @@ class Input extends Component{
             this.props.clearSuggestions()
         }else{
             //Fetch suggestions
-            setTimeout(this.handleTimeOut,this.props.suggest_delay)
+            setTimeout(this.handleTimeOut,this.props.suggest_delay);
+            this.props.change();
         }
     }
 

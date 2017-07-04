@@ -5,7 +5,6 @@ import Input from "../components/Input";
 import * as Actions from '../actions'
 import SuggestionList from "../components/SuggestionList";
 import { bindActionCreators } from 'redux'
-import style from './LandingPage.css'
 import {Col, Grid, Row} from "react-bootstrap";
 import PlaceList from "../components/PlaceList";
 
@@ -16,7 +15,15 @@ class LandingPage extends Component {
         lastUpdated: PropTypes.number,
         actions: PropTypes.object.isRequired
     };
-
+    state = {
+        showSuggestions : false,
+    };
+    handleChange(){
+        this.state.showSuggestions = true;
+    }
+    handleClick(){
+        this.state.showSuggestions = false;
+    }
     render() {
         return (
             <div className="container">
@@ -25,9 +32,9 @@ class LandingPage extends Component {
                         <Row className="show-grid">
                             <Col xs={6} md={6}>
                                 <h1>Mis Lugares</h1>
-                                <Input suggest_delay={1000} {...this.props.actions}/>
+                                <Input change={() => this.handleChange()} suggest_delay={1000} {...this.props.actions}/>
                                 <div >
-                                    <SuggestionList options={this.props.suggestions} {...this.props.actions}/>
+                                    <SuggestionList itemClick={() => {this.handleClick()}} showSuggestions={this.state.showSuggestions} options={this.props.suggestions} {...this.props.actions}/>
                                 </div>
                             </Col>
                             <Col xs={6} md={6}>

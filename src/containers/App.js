@@ -9,7 +9,6 @@ class App extends Component {
     static propTypes = {
         selectedPlace: PropTypes.object,
     };
-
     render() {
 
         return (

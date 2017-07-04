@@ -5,8 +5,8 @@ import {STREET_URL, PLACE_URL, DETAILS_URL} from '../constants/ApiUrls'
 import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS} from '../constants/ActionTypes'
 
 const suggesters = [
-    new StreetSuggester("street", {}, STREET_URL),
-    new PlaceSuggester("place", {}, PLACE_URL)
+    new StreetSuggester("street", {maxSuggestions: 10}, STREET_URL),
+    new PlaceSuggester("place", {maxSuggestions: 10}, PLACE_URL)
 ];
 
 export const selectSuggestion = place => ({
@@ -91,9 +91,8 @@ export const clearSuggestions = () => ({
 export const fetchSuggestions = text => dispatch => {
     dispatch(requestSuggestions(text));
     suggesters.forEach((suggester) => {
-        suggester.getSuggestions(text, (text, items) => {dispatch(receiveSuggestions(text, items))}, 10);
+        suggester.getSuggestions(text, (text, items) => {dispatch(receiveSuggestions(text, items))});
     });
-
 };
 
 export const selectPlace = place => ({
