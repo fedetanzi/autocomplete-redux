@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { ActionCreators as UndoActionCreators } from 'redux-undo'
-import {Col, Grid, Row, Jumbotron} from "react-bootstrap";
 import styles from './PlaceDetails.css'
-import {Col, Grid, Row} from "react-bootstrap";
+import {Col, Grid, Jumbotron, Row} from "react-bootstrap";
 import * as Actions from '../actions'
 import { bindActionCreators } from 'redux'
 
@@ -34,7 +32,7 @@ class DetailsPage extends Component {
     };
 
     handleClick(){
-        if(!!this.props.selectedPlace) this.props.actions.selectPlace(null);
+        this.props.actions.selectPlace(null);
     }
 
     render(){

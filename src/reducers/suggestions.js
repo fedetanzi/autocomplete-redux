@@ -1,9 +1,7 @@
 /**
  * Created by federuiz on 7/3/17.
  */
-import {
-    REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS, INPUT_CHANGE
-} from '../constants/ActionTypes'
+import {REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS, INPUT_CHANGE} from '../constants/ActionTypes'
 
 const initialState = {
     currentSuggestions: [],

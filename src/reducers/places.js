@@ -1,7 +1,4 @@
-
-import {
-    SELECT_PLACE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA
-} from '../constants/ActionTypes'
+import {SELECT_PLACE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA} from '../constants/ActionTypes'
 
 const places = (state = {myPlaces: [], selectedPlace: null}, action) => {
     switch (action.type) {
