@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import styles from './PlaceDetails.css'
+import styles from './DetailsPage.css'
 import {Col, Grid, Jumbotron, Row} from "react-bootstrap";
 import FaArrow from 'react-icons/lib/fa/arrow-left';
 import * as Actions from '../actions'

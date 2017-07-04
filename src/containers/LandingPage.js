@@ -33,7 +33,7 @@ class LandingPage extends Component {
                         <Row className="show-grid">
                             <Col xs={6} md={6}>
                                 <h1>Mis Lugares</h1>
-                                <Input change={() => this.handleChange()} suggest_delay={1000} {...this.props.actions}/>
+                                <Input change={() => this.handleChange()} suggest_delay_place={800} suggest_delay_street={400} {...this.props.actions}/>
                                 <div >
                                     <SuggestionList itemClick={() => {this.handleClick()}} showSuggestions={this.state.showSuggestions} options={this.props.suggestions} {...this.props.actions}/>
                                 </div>

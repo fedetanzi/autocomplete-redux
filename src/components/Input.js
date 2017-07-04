@@ -4,14 +4,16 @@
 import React, { Component } from 'react'
 import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 import PropTypes from 'prop-types'
+import {PLACE_TYPE, STREET_TYPE} from "../constants/ActionTypes";
 
 class Input extends Component{
 
     static propTypes = {
-        fetchSuggestions : PropTypes.func.isRequired ,
+        fetchSuggestions: PropTypes.func.isRequired ,
         clearSuggestions : PropTypes.func.isRequired ,
         inputChange : PropTypes.func.isRequired ,
-        suggest_delay : PropTypes.number.isRequired,
+        suggest_delay_street : PropTypes.number.isRequired,
+        suggest_delay_place : PropTypes.number.isRequired,
         text : PropTypes.string,
         change: PropTypes.func.isRequired,
     };
@@ -23,7 +25,6 @@ class Input extends Component{
             lastInputTime : null,
         };
         this.handleSearch = this.handleSearch.bind(this);
-        this.handleTimeOut = this.handleTimeOut.bind(this);
     }
 
     handleSearch(e) {
@@ -35,14 +36,17 @@ class Input extends Component{
             this.props.clearSuggestions()
         }else{
             //Fetch suggestions
-            setTimeout(this.handleTimeOut,this.props.suggest_delay);
+            setTimeout(() => {
+                if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay_place){
+                    this.props.fetchSuggestions(this.state.value,PLACE_TYPE)
+                }
+            },this.props.suggest_delay_place);
+            setTimeout(() => {
+                if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay_street){
+                    this.props.fetchSuggestions(this.state.value,STREET_TYPE)
+                }
+            },this.props.suggest_delay_street);
             this.props.change();
-        }
-    }
-
-    handleTimeOut(){
-        if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay){
-            this.props.fetchSuggestions(this.state.value)
         }
     }
 
