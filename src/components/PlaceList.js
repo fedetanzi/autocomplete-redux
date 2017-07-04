@@ -23,8 +23,9 @@ class PlaceList extends Component{
             const placesView = this.props.places.map ((place, index) =>
                 <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)}/>
             );
+            const displayOptions = this.props.places.length === 0 ? {"display": "none"} : {};
             return(
-                <Row className="place-list">
+                <Row className="place-list" style={displayOptions}>
                     <Col lg={12} className="no-padding">
                         <ul>
                             {placesView}

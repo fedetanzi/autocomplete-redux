@@ -7,14 +7,20 @@ export default class StreetSuggester extends Suggester{
 
     constructor(name, options, apiHost){
         super(name, options, apiHost);
-        super.setMappingRule({title: "direccion", subTitle: "nombre_localidad", coordinates: "coordenadas"})
+        super.setMappingRule({title: "direccion", subTitle: "tipo", coordinates: "coordenadas"})
     }
 
     getSuggestions = (text, callback) => {
         const url = `${this.apiHost}direccion=${text}&maxOptions=${this.options.maxSuggestions}&geocodificar=true`;
         return fetch(url)
             .then(response => response.json())
-            .then(json => super.mapAttributes(json.direccionesNormalizadas))
+            .then(json => {
+                const mapped = json.direccionesNormalizadas.map ((d) => {
+                    d.tipo = "Dirección";
+                    return d;
+                });
+                return super.mapAttributes(mapped);
+            })
             .then(items => callback(text, items))
     }
 }
