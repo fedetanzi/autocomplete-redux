@@ -18,7 +18,7 @@ class SuggestionItem extends Component{
 
     render(){
         return(
-            <li onClick={() => this.handleClick()}>
+            <li onClick={() => this.handleClick()} className="suggestion-item">
                 <span>{this.props.suggestion.title}</span>
                 <br/>
                 <span>{this.props.suggestion.subTitle}</span>

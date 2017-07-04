@@ -9,11 +9,10 @@ class App extends Component {
     static propTypes = {
         selectedPlace: PropTypes.object,
     };
-
     render() {
 
         return (
-            <div>
+            <div className="container">
                 {!!this.props.selectedPlace ? <DetailsPage /> : <LandingPage />}
             </div>
         )

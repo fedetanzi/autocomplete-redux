@@ -27,7 +27,7 @@ class LandingPage extends Component {
     }
     render() {
         return (
-            <div className="container">
+            <div>
                 <div className="input-div">
                     <Grid>
                         <Row className="show-grid">

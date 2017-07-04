@@ -6,10 +6,10 @@ ul {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 6px;
 }
-li{
+.suggestion-item{
     padding: 10px;
 }
-li:hover {
+.suggestion-item:hover {
     cursor: pointer;
     background-color: #1f538b;
     color: white;

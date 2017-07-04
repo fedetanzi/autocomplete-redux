@@ -1,0 +1,7 @@
+.details-container {
+    padding: 20px;
+    border-radius: 6px;
+}
+.detail-item:hover {
+    background-color: rgba(91, 91, 91, 0.1);
+}
