@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Input from "../components/Input";
-import * as TodoActions from '../actions'
+import * as Actions from '../actions'
 import SuggestionList from "../components/SuggestionList";
 import { bindActionCreators } from 'redux'
 
@@ -38,7 +38,7 @@ class App extends Component {
                               <h1>Mis Lugares</h1>
                               <Input suggest_delay={1000} {...this.props.actions}/>
                               <div >
-                                  <SuggestionList options={this.props.suggestions}/>
+                                  <SuggestionList options={this.props.suggestions} {...this.props.actions}/>
                               </div>
                           </Col>
                           <Col xs={6} md={6}>
@@ -60,7 +60,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(TodoActions, dispatch)
+    actions: bindActionCreators(Actions, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

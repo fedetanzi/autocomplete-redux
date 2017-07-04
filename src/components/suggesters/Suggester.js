@@ -16,10 +16,11 @@ export default class Suggester {
     mapAttributes (suggestions){
         console.log ("mapping");
         return suggestions.map((d) => {
-            return {
-                title: d[this.mappingRule["title"]],
-                subTitle: d[this.mappingRule["subTitle"]]
+            let suggestion = {};
+            for (let [k, v] of Object.entries(this.mappingRule)) {
+                suggestion[k] = d[v];
             }
+            return suggestion;
         })
     };
 

@@ -9,9 +9,12 @@ import styles from './SuggestionList.css'
 class SuggestionList extends Component{
 
     static propTypes = {
-        options : PropTypes.array.isRequired
+        options : PropTypes.array.isRequired,
+        saveSuggestion: PropTypes.func.isRequired
     };
-
+    handleClick(suggestion){
+        this.props.saveSuggestion(suggestion);
+    }
     render(){
 
         return(
@@ -23,6 +26,7 @@ class SuggestionList extends Component{
                                 return <SuggestionItem
                                     suggestion={option}
                                     key={option.title + "-" + option.subTitle}
+                                    click={(suggestion) => this.handleClick(suggestion)}
                                 />
                             }
                         )

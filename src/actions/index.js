@@ -1,12 +1,12 @@
 import StreetSuggester from '../components/suggesters/StreetSuggester'
 import PlaceSuggester from '../components/suggesters/PlaceSuggester'
-
+import {COORDINATES_URL, STREET_URL, PLACE_URL, DETAILS_URL} from '../constants/ApiUrls'
 
 import {SELECT_PLACE, INPUT_CHANGE,SAVE_SUGGESTION, RECEIVE_PLACE_DATA,RECEIVE_SUGGESTIONS,REQUEST_SUGGESTIONS} from '../constants/ActionTypes'
 
 const suggesters = [
-    new StreetSuggester("street", {}, "http://servicios.usig.buenosaires.gob.ar/normalizar/?"),
-    new PlaceSuggester("place", {}, "http://epok.buenosaires.gob.ar/buscar/?")
+    new StreetSuggester("street", {}, STREET_URL),
+    new PlaceSuggester("place", {}, PLACE_URL)
 ];
 
 export const selectSuggestion = place => ({
@@ -19,10 +19,18 @@ export const inputChange = text => ({
     text: text
 });
 
-export const saveSuggestion = suggestion => ({
-    type: SAVE_SUGGESTION,
-    suggestion: suggestion
-});
+export const saveSuggestion = suggestion => (dispatch, getState) => {
+    const url = `${DETAILS_URL}x=${suggestion.coordinates.x}&y=${suggestion.coordinates.y}`;
+    return fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            suggestion.details = json;
+            dispatch({
+                type: SAVE_SUGGESTION,
+                suggestion: suggestion
+            })
+        })
+};
 
 export const receivePlaceData = details => ({
     type: RECEIVE_PLACE_DATA,

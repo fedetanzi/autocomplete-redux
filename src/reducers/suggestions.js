@@ -17,11 +17,11 @@ const suggestions = (state = initialState, action) => {
             return Object.assign({}, state, {
                 ...state,
                 currentSuggestions: action.text === state.currentText ? (action.text === state.currentSearch && action.text !== "" ? state.currentSuggestions.concat(action.suggestions) : action.suggestions) : state.currentSuggestions,
+                currentSearch: action.text
             });
         case REQUEST_SUGGESTIONS:
             return Object.assign({}, state, {
                 ...state,
-                currentSearch: action.text
             });
         case INPUT_CHANGE:
             return Object.assign({}, state, {

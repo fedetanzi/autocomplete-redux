@@ -11,10 +11,21 @@ export default class PlaceSuggester extends Suggester{
     }
 
     getSuggestions = (text, callback, maxSuggestions) => {
-        const url = `${this.apiHost}texto=${text}&limit=${maxSuggestions}`;
+        const url = `${this.apiHost}buscar/?texto=${text}&limit=${maxSuggestions}`;
         return fetch(url)
             .then(response => response.json())
-            .then(json => super.mapAttributes(json.instancias))
+            .then(json => {
+                // let promises = json.instancias.map ((place) => {
+                //     return fetch (`${this.apiHost}getObjectContent/?id=${place.id}`)
+                //         .then (response => response.json())
+                //         .then (json => {
+                //             place.direction = json.direccionNormalizada;
+                //             return place;
+                //         })
+                // });
+                // return Promise.all (promises).then (values => super.mapAttributes(values));
+                return super.mapAttributes(json.instancias)
+            })
             .then(items => callback(text, items))
     }
 }

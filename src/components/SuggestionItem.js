@@ -9,11 +9,11 @@ class SuggestionItem extends Component{
 
     static propTypes = {
         suggestion: PropTypes.object.isRequired,
-        saveSuggestion: PropTypes.func.isRequired
+        click: PropTypes.func.isRequired
     };
 
     handleClick(){
-        this.props.saveSuggestion(this.props.suggestion);
+        this.props.click(this.props.suggestion);
     }
     render(){
         return(
