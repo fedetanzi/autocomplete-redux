@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const store = compose(
     applyMiddleware(...middleware),
-    // autoRehydrate()
+    autoRehydrate()
 )(createStore)(reducers);
 
 

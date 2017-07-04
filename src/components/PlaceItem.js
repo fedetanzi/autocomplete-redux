@@ -29,13 +29,13 @@ class PlaceItem extends Component{
             <div>
                 <li onClick={() => this.handleClick()} className="place-item">
                     <Row>
-                        <Col lg={10}>
+                        <Col lg={10} md={6} sm={6} xs={12}>
                             <h5>{this.props.place.title}</h5>
                         </Col>
-                        <Col lg={1}>
+                        <Col lg={1} md={3} sm={3} xs={6}>
                             <FaTrash onClick={(e) => {e.stopPropagation(); this.handleDeleteClick()}} size={32} className="delete-icon"/>
                         </Col>
-                        <Col lg={1}>
+                        <Col lg={1} md={3} sm={3} xs={6}>
                             <FaArrow size={32} className="arrow-icon"/>
                         </Col>
                     </Row>
