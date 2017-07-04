@@ -10,7 +10,8 @@ describe ("places reducer", () => {
             places(undefined, {})
         ).toEqual({
                 myPlaces: [],
-                selectedPlace: null
+                selectedPlace: null,
+                loadingData: false,
             }
         )
     });
@@ -20,7 +21,8 @@ describe ("places reducer", () => {
         expect(
             places({
                 myPlaces: [],
-                selectedPlace: null
+                selectedPlace: null,
+                loadingData: false,
             }, {
                 type: types.SAVE_SUGGESTION,
                 suggestion: {
@@ -35,7 +37,8 @@ describe ("places reducer", () => {
                     "subTitle" : "My Location",
                 }
             ],
-            selectedPlace: null
+            selectedPlace: null,
+            loadingData: false,
         });
         // Save a suggestion with details
         expect(
@@ -79,7 +82,8 @@ describe ("places reducer", () => {
                     }
                 }
             ],
-            selectedPlace: null
+            selectedPlace: null,
+            loadingData: false,
         });
     });
 

@@ -12,7 +12,8 @@ describe ("suggestions reducer", () => {
                 currentSuggestions: [],
                 currentText: "",
                 currentSearch: "",
-                maxSuggestions: 10
+                maxSuggestions: 10,
+                loadingSuggestions: false,
             }
         )
     });
@@ -47,7 +48,8 @@ describe ("suggestions reducer", () => {
         ).toEqual({
             currentSuggestions: [],
             currentText: "libertador",
-            currentSearch: ""
+            currentSearch: "",
+            loadingSuggestions: true,
         })
     });
 
@@ -74,7 +76,8 @@ describe ("suggestions reducer", () => {
                 subtitle: "My region"
             }],
             currentText: "libertador",
-            currentSearch: "libertador"
+            currentSearch: "libertador",
+            loadingSuggestions: false,
         });
         // Add a suggestion with existing current suggestions.
         expect(
@@ -106,7 +109,8 @@ describe ("suggestions reducer", () => {
                     subtitle: "My region"
                 }],
             currentText: "libertador",
-            currentSearch: "libertador"
+            currentSearch: "libertador",
+            loadingSuggestions: false,
         });
         // Reset the suggestions to an empty list.
         expect(
@@ -127,7 +131,8 @@ describe ("suggestions reducer", () => {
         ).toEqual({
             currentSuggestions: [],
             currentText: "",
-            currentSearch: ""
+            currentSearch: "",
+            loadingSuggestions: false,
         });
         // Try to add a suggestion when currentText is different than the action text.
         expect(
@@ -148,7 +153,8 @@ describe ("suggestions reducer", () => {
         ).toEqual({
             currentSuggestions: [],
             currentText: "libertador",
-            currentSearch: "libertador"
+            currentSearch: "libertador",
+            loadingSuggestions: false,
         });
         // Try to add more suggestions than the limit.
         expect(
@@ -191,6 +197,7 @@ describe ("suggestions reducer", () => {
             currentText: "libertador",
             currentSearch: "libertador",
             maxSuggestions: 2,
+            loadingSuggestions: false,
         })
     });
 });
