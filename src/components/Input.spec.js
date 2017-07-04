@@ -10,8 +10,9 @@ const setup = () => {
         clearSuggestions : jest.fn(),
         inputChange : jest.fn(),
         change: jest.fn(),
-        suggest_delay : 4000,
-        text: 'Use Redux',
+        suggest_delay_street : 800,
+        suggest_delay_place : 1000,
+        text: 'Use Redux'
     };
 
     const renderer = createRenderer();
@@ -63,7 +64,8 @@ describe('components', () => {
             const updated = renderer.getRenderOutput();
             const inputUpdated = updated.props.children.props.children[1];
             expect(props.inputChange).toBeCalled();
-            expect(setTimeout.mock.calls[0][1]).toBe(1000);
+            expect(setTimeout.mock.calls[0][1]).toBe(props.suggest_delay_street);
+            expect(setTimeout.mock.calls[1][1]).toBe(props.suggest_delay_place);
         });
     })
 });

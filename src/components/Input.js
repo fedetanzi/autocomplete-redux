@@ -37,15 +37,15 @@ class Input extends Component{
         }else{
             //Fetch suggestions
             setTimeout(() => {
-                if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay_place){
-                    this.props.fetchSuggestions(this.state.value,PLACE_TYPE)
-                }
-            },this.props.suggest_delay_place);
-            setTimeout(() => {
                 if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay_street){
                     this.props.fetchSuggestions(this.state.value,STREET_TYPE)
                 }
             },this.props.suggest_delay_street);
+            setTimeout(() => {
+                if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay_place){
+                    this.props.fetchSuggestions(this.state.value,PLACE_TYPE)
+                }
+            },this.props.suggest_delay_place);
             this.props.change();
         }
     }
