@@ -7,7 +7,7 @@ export default class PlaceSuggester extends Suggester{
 
     constructor(name, options, apiHost){
         super(name, options, apiHost);
-        super.setMappingRule({title: "nombre", subTitle: "clase", })
+        super.setMappingRule({title: "nombre", subTitle: "clase", id: "id"})
     }
 
     getSuggestions = (text, callback, maxSuggestions) => {
