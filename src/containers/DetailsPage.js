@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { ActionCreators as UndoActionCreators } from 'redux-undo'
 import {Col, Grid, Row} from "react-bootstrap";
+import * as Actions from '../actions'
+import { bindActionCreators } from 'redux'
 
 class DetailsPage extends Component {
 
     static propTypes = {
-        canUndo : PropTypes.bool.isRequired,
         selectedPlace: PropTypes.shape(
             {
                 title: PropTypes.string,
@@ -27,14 +27,17 @@ class DetailsPage extends Component {
                     }
                 )
             }
-        ),
-        onUndo: PropTypes.func.isRequired
+        )
     };
+
+    handleClick(){
+        if(!!this.props.selectedPlace) this.props.actions.selectPlace(null);
+    }
 
     render(){
         return(
             <div>
-                <button onClick={this.props.onUndo} disabled={!this.props.canUndo}>
+                <button onClick={() => this.handleClick()}>
                     Undo
                 </button>
                 <h1>{this.props.selectedPlace.title}</h1>
@@ -126,13 +129,12 @@ class DetailsPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    canUndo: state.places.past.length > 0,
-    selectedPlace: state.places.present.selectedPlace
+    selectedPlace: state.places.selectedPlace
 });
 
-const mapDispatchToProps = ({
-    onUndo: UndoActionCreators.undo
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Actions, dispatch)
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage)
+export default connect(mapStateToProps,mapDispatchToProps)(DetailsPage)

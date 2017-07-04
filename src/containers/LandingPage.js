@@ -12,6 +12,7 @@ class LandingPage extends Component {
 
     static propTypes = {
         suggestions: PropTypes.array.isRequired,
+        places : PropTypes.array.isRequired,
         lastUpdated: PropTypes.number,
         actions: PropTypes.object.isRequired
     };
@@ -19,10 +20,10 @@ class LandingPage extends Component {
         showSuggestions : false,
     };
     handleChange(){
-        this.state.showSuggestions = true;
+        this.setState({showSuggestions : true});
     }
     handleClick(){
-        this.state.showSuggestions = false;
+        this.setState({showSuggestions : false});
     }
     render() {
         return (
@@ -52,7 +53,7 @@ const mapStateToProps = state => {
     return {
         suggestions: state.suggestions.currentSuggestions,
         currentText : state.suggestions.currentText,
-        places: state.places.present.myPlaces
+        places: state.places.myPlaces
     }
 };
 

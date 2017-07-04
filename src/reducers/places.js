@@ -1,4 +1,4 @@
-import undoable from 'redux-undo'
+
 import {
     SELECT_PLACE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA
 } from '../constants/ActionTypes'
@@ -25,4 +25,4 @@ const places = (state = {myPlaces: [], selectedPlace: null}, action) => {
     }
 };
 
-export default undoable(places)
+export default places

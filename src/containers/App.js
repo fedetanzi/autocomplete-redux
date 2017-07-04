@@ -21,7 +21,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state){
-    return {  selectedPlace: state.places.present.selectedPlace }
+    return {  selectedPlace: state.places.selectedPlace }
 }
 
 export default connect(mapStateToProps)(App)

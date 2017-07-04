@@ -15,6 +15,7 @@ class SuggestionItem extends Component{
     handleClick(){
         this.props.click(this.props.suggestion);
     }
+
     render(){
         return(
             <li onClick={() => this.handleClick()}>
