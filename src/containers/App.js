@@ -17,18 +17,6 @@ class App extends Component {
       actions: PropTypes.object.isRequired
   };
 
-  componentDidMount() {
-    const { dispatch, selectedReddit } = this.props;
-    // dispatch(fetchPostsIfNeeded(selectedReddit))
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // if (nextProps.selectedReddit !== this.props.selectedReddit) {
-    //   const { dispatch, selectedReddit } = nextProps;
-    //   dispatch(fetchPostsIfNeeded(selectedReddit))
-    // }
-  }
-
   render() {
       return (
           <div className="container">
