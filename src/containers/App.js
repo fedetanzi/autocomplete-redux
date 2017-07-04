@@ -13,7 +13,7 @@ class App extends Component {
 
         return (
             <div>
-                {!!this.props.selectedPlace ? <PlaceDetails /> : <LandingPage />}
+                {!!this.props.selectedPlace ? <PlaceDetails place={this.props.selectedPlace} /> : <LandingPage />}
             </div>
         )
     }
