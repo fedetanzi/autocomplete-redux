@@ -1,0 +1,26 @@
+.place-list {
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+}
+.place-item {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 4px;
+}
+.place-item:hover {
+    background: #717f86;
+    color: white;
+}
+.no-padding {
+    padding: 0;
+}
+hr {
+    margin: 0;
+}
+.arrow-icon {
+    position: relative;
+    right: 15px;
+    top: 10px;
+}

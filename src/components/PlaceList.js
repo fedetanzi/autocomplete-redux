@@ -5,6 +5,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PlaceItem from "./PlaceItem";
+import {Col, Row} from "react-bootstrap";
+import style from './PlaceList.css';
 
 class PlaceList extends Component{
 
@@ -22,11 +24,13 @@ class PlaceList extends Component{
                 <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)}/>
             );
             return(
-                <div>
-                    <ul>
-                        {placesView}
-                    </ul>
-                </div>
+                <Row className="place-list">
+                    <Col lg={12} className="no-padding">
+                        <ul>
+                            {placesView}
+                        </ul>
+                    </Col>
+                </Row>
             )
     }
 }
