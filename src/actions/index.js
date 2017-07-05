@@ -84,9 +84,9 @@ export const receiveSuggestions = (text, json) => ({
   receivedAt: Date.now()
 });
 
-export const clearSuggestions = () => ({
+export const clearSuggestions = (text) => ({
     type: RECEIVE_SUGGESTIONS,
-    text: "",
+    text: text,
     suggestions: [],
     receivedAt: Date.now()
 });

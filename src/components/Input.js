@@ -16,6 +16,7 @@ class Input extends Component{
         suggest_delay_place : PropTypes.number.isRequired,
         text : PropTypes.string,
         change: PropTypes.func.isRequired,
+        length_query : PropTypes.number.isRequired
     };
 
     constructor(props){
@@ -31,21 +32,19 @@ class Input extends Component{
         const query = e.target.value;
         this.setState({ value : query  , lastInputTime: Date.now() });
         this.props.inputChange(query);
-        if (!query) {
-            //Delete all suggestions
-            this.props.clearSuggestions()
+        if (query.length <= this.props.length_query  ) {
+            this.props.clearSuggestions(query)
         }else{
-            //Fetch suggestions
             setTimeout(() => {
-                if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay_street){
-                    this.props.fetchSuggestions(this.state.value,STREET_TYPE)
+                if (Date.now() - this.state.lastInputTime >= this.props.suggest_delay_street) {
+                    this.props.fetchSuggestions(this.state.value, STREET_TYPE)
                 }
-            },this.props.suggest_delay_street);
+            }, this.props.suggest_delay_street);
             setTimeout(() => {
-                if(Date.now() - this.state.lastInputTime >= this.props.suggest_delay_place){
-                    this.props.fetchSuggestions(this.state.value,PLACE_TYPE)
+                if (Date.now() - this.state.lastInputTime >= this.props.suggest_delay_place) {
+                    this.props.fetchSuggestions(this.state.value, PLACE_TYPE)
                 }
-            },this.props.suggest_delay_place);
+            }, this.props.suggest_delay_place);
             this.props.change();
         }
     }

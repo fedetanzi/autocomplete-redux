@@ -45,7 +45,7 @@ class LandingPage extends Component {
                                         <FaLoading size={32} className="my-spin pull-right" style={showLoader}/>
                                     </Col>
                                 </Row>
-                                <Input change={() => this.handleChange()} suggest_delay_place={800} suggest_delay_street={400} {...this.props.actions}/>
+                                <Input change={() => this.handleChange()} length_query={2} suggest_delay_place={800} suggest_delay_street={400} {...this.props.actions}/>
                                 <div >
                                     <SuggestionList itemClick={() => {this.handleClick()}} showSuggestions={this.state.showSuggestions} options={this.props.suggestions} {...this.props.actions}/>
                                 </div>

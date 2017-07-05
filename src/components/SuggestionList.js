@@ -27,11 +27,10 @@ class SuggestionList extends Component{
             <div className="suggestions-div" style={divStyle}>
                 <ul>
                     {
-                        this.props.options.map(
-                            (option) => {
+                        this.props.options.map((option, index) => {
                                 return <SuggestionItem
                                     suggestion={option}
-                                    key={option.title + "-" + option.subTitle}
+                                    key={index}
                                     click={(suggestion) => this.handleClick(suggestion)}
                                 />
                             }

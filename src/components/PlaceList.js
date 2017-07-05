@@ -23,15 +23,14 @@ class PlaceList extends Component{
         this.props.deletePlace(place);
     }
     render(){
-            const placesView = this.props.places.map ((place, index) =>
-                <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)} delete={() => this.handleDeleteClick(place)}/>
-            );
             const displayOptions = this.props.places.length === 0 ? {"display": "none"} : {};
             return(
                 <Row className="place-list" style={displayOptions}>
                     <Col lg={12} className="no-padding">
                         <ul>
-                            {placesView}
+                            {this.props.places.map ((place, index) =>
+                                <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)} delete={() => this.handleDeleteClick(place)}/>
+                            )}
                         </ul>
                     </Col>
                 </Row>
