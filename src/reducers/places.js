@@ -1,4 +1,5 @@
 import {SELECT_PLACE, SAVE_SUGGESTION, RECEIVE_PLACE_DATA, DELETE_PLACE, REQUEST_PLACE_DATA} from '../constants/ActionTypes'
+import {REHYDRATE} from 'redux-persist/constants'
 
 const places = (state = {myPlaces: [], selectedPlace: null, loadingData: false}, action) => {
     switch (action.type) {
@@ -29,6 +30,10 @@ const places = (state = {myPlaces: [], selectedPlace: null, loadingData: false},
                 ...state,
                 loadingData: true,
             };
+        case REHYDRATE:
+            let incoming = action.payload.places;
+            if (incoming) return {...state, ...incoming, loadingData: false};
+            return state;
         default:
             return state
     }

@@ -1,7 +1,8 @@
 /**
  * Created by federuiz on 7/3/17.
  */
-import {REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS, INPUT_CHANGE} from '../constants/ActionTypes'
+import {REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS, INPUT_CHANGE, RESET_DATA} from '../constants/ActionTypes'
+import {REHYDRATE} from 'redux-persist/constants'
 
 const initialState = {
     currentSuggestions: [],
@@ -36,6 +37,10 @@ const suggestions = (state = initialState, action) => {
                 ...state,
                 currentText: action.text,
             });
+        case REHYDRATE:
+            let incoming = action.payload.suggestions;
+            if (incoming) return {...state, ...incoming, currentText: "", loadingSuggesters: {}};
+            return state;
         default:
             return state
     }

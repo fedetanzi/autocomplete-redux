@@ -8,6 +8,7 @@ import localForage from 'localforage'
 import { createLogger } from 'redux-logger'
 import reducers from './reducers'
 import App from './containers/App'
+import {RESET_DATA} from './constants/ActionTypes'
 
 const middleware = [thunk];
 
@@ -17,12 +18,14 @@ if (process.env.NODE_ENV !== 'production') {
 
 const store = compose(
     applyMiddleware(...middleware),
-    // autoRehydrate()
+    autoRehydrate()
 )(createStore)(reducers);
 
 
-// persistStore(store, {storage: localForage});
-
+persistStore(store, {storage: localForage});
+store.dispatch({
+    type: RESET_DATA
+});
 render(
   <Provider store={store}>
     <App />
