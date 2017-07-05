@@ -44,12 +44,12 @@ class DetailsPage extends Component {
                         <FaArrow onClick={() => this.handleClick()} size={32} name='arrow-left'/>
                     </Col >
                     <Col xs={10} md={10} lg={10} className="vcenter">
-                        <h1>{this.props.place.title}</h1>
+                        <h2>{this.props.place.title}</h2>
                     </Col>
                 </Row>
                 <Row>
                     <Col lg={12} lgOffset={1} md={12} mdOffset={1} xs={12}  xsOffset={1}>
-                        <h3>{this.props.place.subTitle}</h3>
+                        <h4>{this.props.place.subTitle}</h4>
                     </Col>
                 </Row>
             </div>
@@ -58,7 +58,7 @@ class DetailsPage extends Component {
         let rows = [
             <Row key="data-title">
                 <Col lg={12} md={12}>
-                    <h3>Datos de interes</h3>
+                    <h4>Datos de interes</h4>
                 </Col>
             </Row>
         ];
@@ -68,10 +68,10 @@ class DetailsPage extends Component {
                 rows.push(
                     <Row key={k + v + index} className="detail-item">
                         <Col xs={6} md={6}>
-                            <h4>{k.replace(regex, " ").split(" ").map((d) => d[0].toUpperCase() + d.substr(1, d.length)).join(" ")}:</h4>
+                            <h5>{k.replace(regex, " ").split(" ").map((d) => d[0].toUpperCase() + d.substr(1, d.length)).join(" ")}:</h5>
                         </Col>
                         <Col xs={6} md={6}>
-                            <h4 className="pull-right">{v}</h4>
+                            <h5 className="pull-right">{v}</h5>
                         </Col>
                     </Row>
                 )
