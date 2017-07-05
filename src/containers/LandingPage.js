@@ -25,6 +25,8 @@ class LandingPage extends Component {
     state = {
         showSuggestions : false,
         minLength: 2,
+        suggest_delay_street : 400,
+        suggest_delay_place : 800
     };
 
     handleChange(value){
@@ -35,6 +37,7 @@ class LandingPage extends Component {
     }
 
     render() {
+
         const showLoader = !this.props.loading ? {"display": "none"} : {};
         const errorMessage = !this.props.loading && this.props.suggestions.length === 0 && this.props.currentText.length > this.state.minLength ?
             <Row>
@@ -63,8 +66,8 @@ class LandingPage extends Component {
                                             change={(value) => this.handleChange(value)}
                                             text={this.props.currentText}
                                             length_query={this.state.minLength}
-                                            suggest_delay_place={800}
-                                            suggest_delay_street={400}
+                                            suggest_delay_place={this.state.suggest_delay_place}
+                                            suggest_delay_street={this.state.suggest_delay_street}
                                             fetchSuggestionsPlace={(value) => this.props.actions.fetchSuggestions(value, PLACE_TYPE)}
                                             fetchSuggestionsStreet={(value) => this.props.actions.fetchSuggestions(value, STREET_TYPE)}
                                             {...this.props.actions}
