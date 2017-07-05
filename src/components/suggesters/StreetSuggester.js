@@ -21,6 +21,6 @@ export default class StreetSuggester extends Suggester{
                 });
                 return super.mapAttributes(mapped);
             })
-            .then(items => callback(text, items))
+            .then(items => callback(text, items, this.type))
     }
 }

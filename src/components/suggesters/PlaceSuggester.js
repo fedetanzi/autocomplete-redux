@@ -17,6 +17,6 @@ export default class PlaceSuggester extends Suggester{
             .then(json => {
                 return super.mapAttributes(json.instancias)
             })
-            .then(items => callback(text, items))
+            .then(items => callback(text, items, this.type))
     }
 }

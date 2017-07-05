@@ -19,6 +19,7 @@ class LandingPage extends Component {
         lastUpdated: PropTypes.number,
         actions: PropTypes.object.isRequired,
         loading: PropTypes.bool.isRequired,
+        currentText: PropTypes.string.isRequired,
     };
     state = {
         showSuggestions : false,
@@ -31,7 +32,14 @@ class LandingPage extends Component {
     }
     render() {
         const showLoader = !this.props.loading ? {"display": "none"} : {};
-        return (
+        const errorMessage = !this.props.loading && this.props.suggestions.length === 0 && this.props.currentText !== "" ?
+            <Row>
+                <Col lg={12}>
+                <label>Lo sentimos! No hemos encontrado resultados</label>
+                </Col>
+            </Row>
+         : "";
+         return (
             <div>
                 <div className="input-div">
                     <Grid>
@@ -49,6 +57,7 @@ class LandingPage extends Component {
                                 <div >
                                     <SuggestionList itemClick={() => {this.handleClick()}} showSuggestions={this.state.showSuggestions} options={this.props.suggestions} {...this.props.actions}/>
                                 </div>
+                                {errorMessage}
                             </Col>
                             <Col xs={12} md={6} sm={12}>
                                 <PlaceList places={this.props.places} {...this.props.actions}/>
@@ -66,7 +75,7 @@ const mapStateToProps = state => {
         suggestions: state.suggestions.currentSuggestions,
         currentText : state.suggestions.currentText,
         places: state.places.myPlaces,
-        loading: state.suggestions.loadingSuggestions || state.places.loadingData,
+        loading: Object.values(state.suggestions.loadingSuggesters).includes(true) || state.places.loadingData,
     }
 };
 

@@ -72,16 +72,18 @@ export const receivePlaceData = details => ({
 export const requestPlaceData = () => ({
     type: REQUEST_PLACE_DATA,
 });
-export const requestSuggestions = text => ({
-  type: REQUEST_SUGGESTIONS,
-  text: text
+export const requestSuggestions = (text, type) => ({
+    type: REQUEST_SUGGESTIONS,
+    text: text,
+    suggesterType: type,
 });
 
-export const receiveSuggestions = (text, json) => ({
+export const receiveSuggestions = (text, json, type) => ({
   type: RECEIVE_SUGGESTIONS,
   text: text,
   suggestions: json,
-  receivedAt: Date.now()
+  receivedAt: Date.now(),
+    suggesterType: type,
 });
 
 export const clearSuggestions = (text) => ({
@@ -92,9 +94,9 @@ export const clearSuggestions = (text) => ({
 });
 
 export const fetchSuggestions = (text, type) => dispatch => {
-    dispatch(requestSuggestions(text));
     suggesters.forEach((suggester) => {
-        if (suggester.getType() === type) suggester.getSuggestions(text, (text, items) => {dispatch(receiveSuggestions(text, items))});
+        dispatch(requestSuggestions(text, type));
+        if (suggester.getType() === type) suggester.getSuggestions(text, (text, items, type) => {dispatch(receiveSuggestions(text, items, type))});
     });
 };
 
