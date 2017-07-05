@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PlaceItem from "./PlaceItem";
-import {Col, Row} from "react-bootstrap";
 import style from './PlaceList.css';
 
 class PlaceList extends Component{

@@ -8,4 +8,3 @@ export const INPUT_CHANGE = 'INPUT_CHANGE';
 export const DELETE_PLACE = 'DELETE_PLACE';
 export const STREET_TYPE = 'STREET_TYPE';
 export const PLACE_TYPE = 'PLACE_TYPE';
-export const RESET_DATA = 'RESET_DATA';

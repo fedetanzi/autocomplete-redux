@@ -74,7 +74,7 @@ class Input extends Component{
                         className="input"
                         value={this.state.value}
                         onChange={this.handleSearch}
-                        onBlur={this.handleOnBlur}
+                        onBlur={() => this.handleOnBlur}
                     />
                     <FormControl.Feedback />
                 </FormGroup>

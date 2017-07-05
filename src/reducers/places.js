@@ -6,7 +6,7 @@ const places = (state = {myPlaces: [], selectedPlace: null, loadingData: false},
         case SAVE_SUGGESTION:
             return {
                 ...state,
-                myPlaces: state.myPlaces.concat([action.suggestion]),
+                myPlaces: [action.suggestion].concat(state.myPlaces),
                 loadingData: false,
             };
         case SELECT_PLACE:
