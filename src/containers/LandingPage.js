@@ -66,7 +66,7 @@ const mapStateToProps = state => {
         suggestions: state.suggestions.currentSuggestions,
         currentText : state.suggestions.currentText,
         places: state.places.myPlaces,
-        loading: state.suggestions.loadingSuggestions || state.places.loadingData,
+        loading: Object.values(state.suggestions.loadingSuggesters).includes(true) || state.places.loadingData,
     }
 };
 

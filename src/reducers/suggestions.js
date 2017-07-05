@@ -8,12 +8,14 @@ const initialState = {
     currentText: "",
     currentSearch: "",
     maxSuggestions: 10,
-    loadingSuggestions: false,
+    loadingSuggesters: {},
 };
 
 const suggestions = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_SUGGESTIONS:
+            state.loadingSuggesters[action.suggesterType] = false;
+
             return Object.assign({}, state, {
                 ...state,
                 currentSuggestions: action.text === state.currentText ?
@@ -22,12 +24,11 @@ const suggestions = (state = initialState, action) => {
                         : action.suggestions.slice(0, state.maxSuggestions))
                     : state.currentSuggestions,
                 currentSearch: action.text === state.currentText ? action.text : state.currentSearch,
-                loadingSuggestions: false,
             });
         case REQUEST_SUGGESTIONS:
+            state.loadingSuggesters[action.suggesterType] = true;
             return Object.assign({}, state, {
                 ...state,
-                loadingSuggestions: true,
             });
         case INPUT_CHANGE:
             return Object.assign({}, state, {
