@@ -66,10 +66,6 @@ describe ("places reducer", () => {
         ).toEqual({
             myPlaces: [
                 {
-                    "title" : "My address 123",
-                    "subTitle" : "My Location",
-                },
-                {
                     "title": "My address 123",
                     "subTitle": "My Location",
                     details: {
@@ -80,7 +76,12 @@ describe ("places reducer", () => {
                         x: 121213,
                         y: 1291921
                     }
-                }
+                },
+                {
+                    "title" : "My address 123",
+                    "subTitle" : "My Location",
+                },
+
             ],
             selectedPlace: null,
             loadingData: false,

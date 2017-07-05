@@ -25,16 +25,6 @@ describe('actions', () => {
       })
     });
 
-    it('RECEIVE_SUGGESTIONS action', () => {
-      expect(actions.receiveSuggestions('Use Redux',[], 'type')).toEqual({
-         type: types.RECEIVE_SUGGESTIONS,
-          text: 'Use Redux',
-          suggestions: [],
-          receivedAt: Date.now(),
-          suggesterType: 'type',
-      })
-    });
-
     it('INPUT_CHANGE action', () => {
         expect(actions.inputChange('Use Redux')).toEqual({
             type: types.INPUT_CHANGE,
