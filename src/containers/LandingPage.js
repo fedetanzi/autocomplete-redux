@@ -23,6 +23,7 @@ class LandingPage extends Component {
     };
     state = {
         showSuggestions : false,
+        minLength: 2,
     };
     handleChange(){
         this.setState({showSuggestions : true});
@@ -32,7 +33,7 @@ class LandingPage extends Component {
     }
     render() {
         const showLoader = !this.props.loading ? {"display": "none"} : {};
-        const errorMessage = !this.props.loading && this.props.suggestions.length === 0 && this.props.currentText !== "" ?
+        const errorMessage = !this.props.loading && this.props.suggestions.length === 0 && this.props.currentText.length > this.state.minLength ?
             <Row>
                 <Col lg={12}>
                 <label>Lo sentimos! No hemos encontrado resultados</label>
@@ -55,7 +56,7 @@ class LandingPage extends Component {
                                 </Row>
                                 <Row>
                                     <Col lg={12}>
-                                        <Input change={() => this.handleChange()} text={this.props.currentText} length_query={2} suggest_delay_place={800} suggest_delay_street={400} {...this.props.actions}/>
+                                        <Input change={() => this.handleChange()} text={this.props.currentText} length_query={this.state.minLength} suggest_delay_place={800} suggest_delay_street={400} {...this.props.actions}/>
                                         <div >
                                             <SuggestionList itemClick={() => {this.handleClick()}} showSuggestions={this.state.showSuggestions} options={this.props.suggestions} {...this.props.actions}/>
                                         </div>

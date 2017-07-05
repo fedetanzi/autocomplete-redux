@@ -10,13 +10,6 @@ describe('actions', () => {
       })
     });
 
-    it('SAVE_SUGGESTION action', () => {
-      expect(actions.saveSuggestion('Use Redux')).toEqual({
-          type: types.SAVE_SUGGESTION,
-          suggestion: 'Use Redux'
-      })
-    });
-
     it('RECEIVE_PLACE_DATA action', () => {
       expect(actions.receivePlaceData('Use Redux')).toEqual({
           type: types.RECEIVE_PLACE_DATA,
@@ -25,18 +18,20 @@ describe('actions', () => {
     });
 
     it('REQUEST_SUGGESTIONS action', () => {
-      expect(actions.requestSuggestions('Use Redux')).toEqual({
+      expect(actions.requestSuggestions('Use Redux', 'type')).toEqual({
           type: types.REQUEST_SUGGESTIONS,
-          text: 'Use Redux'
+          text: 'Use Redux',
+          suggesterType: 'type',
       })
     });
 
     it('RECEIVE_SUGGESTIONS action', () => {
-      expect(actions.receiveSuggestions('Use Redux',[])).toEqual({
+      expect(actions.receiveSuggestions('Use Redux',[], 'type')).toEqual({
          type: types.RECEIVE_SUGGESTIONS,
           text: 'Use Redux',
           suggestions: [],
-          receivedAt: Date.now()
+          receivedAt: Date.now(),
+          suggesterType: 'type',
       })
     });
 
