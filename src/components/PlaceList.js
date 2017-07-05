@@ -21,15 +21,13 @@ class PlaceList extends Component{
     render(){
             const displayOptions = this.props.places.length === 0 ? {"display": "none"} : {};
             return(
-                <Row className="place-list" style={displayOptions}>
-                    <Col lg={12} className="no-padding">
-                        <ul>
-                            {this.props.places.map ((place, index) =>
-                                <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)} delete={() => this.handleDeleteClick(place)}/>
-                            )}
-                        </ul>
-                    </Col>
-                </Row>
+                <div className="place-list" style={displayOptions}>
+                    <ul>
+                        {this.props.places.map ((place, index) =>
+                            <PlaceItem place={place} key={index} onclick={() => this.handlePlaceClick(place)} delete={() => this.handleDeleteClick(place)}/>
+                        )}
+                    </ul>
+                </div>
             )
     }
 }

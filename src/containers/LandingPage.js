@@ -44,7 +44,7 @@ class LandingPage extends Component {
                 <div className="input-div">
                     <Grid>
                         <Row className="show-grid">
-                            <Col xs={12} md={6} sm={12}>
+                            <Col xs={12} md={6} sm={12} lg={6} xl={6}>
                                 <Row>
                                     <Col lg={6} className="vcenter">
                                         <h1>Mis Lugares</h1>
@@ -53,13 +53,17 @@ class LandingPage extends Component {
                                         <FaLoading size={32} className="my-spin pull-right" style={showLoader}/>
                                     </Col>
                                 </Row>
-                                <Input change={() => this.handleChange()} text={this.props.currentText} length_query={2} suggest_delay_place={800} suggest_delay_street={400} {...this.props.actions}/>
-                                <div >
-                                    <SuggestionList itemClick={() => {this.handleClick()}} showSuggestions={this.state.showSuggestions} options={this.props.suggestions} {...this.props.actions}/>
-                                </div>
-                                {errorMessage}
+                                <Row>
+                                    <Col lg={12}>
+                                        <Input change={() => this.handleChange()} text={this.props.currentText} length_query={2} suggest_delay_place={800} suggest_delay_street={400} {...this.props.actions}/>
+                                        <div >
+                                            <SuggestionList itemClick={() => {this.handleClick()}} showSuggestions={this.state.showSuggestions} options={this.props.suggestions} {...this.props.actions}/>
+                                        </div>
+                                        {errorMessage}
+                                    </Col>
+                                </Row>
                             </Col>
-                            <Col xs={12} md={6} sm={12}>
+                            <Col xs={12} md={6} lg={6} xl={6} sm={12}>
                                 <PlaceList places={this.props.places} {...this.props.actions}/>
                             </Col>
                         </Row>
