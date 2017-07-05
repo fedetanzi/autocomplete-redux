@@ -1,7 +1,3 @@
-/**
- * Created by federuiz on 7/3/17.
- */
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PlaceItem from "./PlaceItem";

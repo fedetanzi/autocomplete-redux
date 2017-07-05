@@ -14,7 +14,7 @@ class Input extends Component{
         inputChange : PropTypes.func.isRequired ,
         suggest_delay_street : PropTypes.number.isRequired,
         suggest_delay_place : PropTypes.number.isRequired,
-        text : PropTypes.string,
+        text : PropTypes.string.isRequired,
         change: PropTypes.func.isRequired,
         length_query : PropTypes.number.isRequired
     };
@@ -59,7 +59,7 @@ class Input extends Component{
                     <FormControl
                         type="text"
                         className="input"
-                        value={this.state.value}
+                        value={this.props.text}
                         onChange={this.handleSearch}
                     />
                     <FormControl.Feedback />

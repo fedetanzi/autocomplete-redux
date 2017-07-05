@@ -1,14 +1,9 @@
-/**
- * Created by federuiz on 7/3/17.
- */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Row} from "react-bootstrap";
 import Col from "react-bootstrap/es/Col";
 import FaArrow from 'react-icons/lib/fa/angle-right';
 import FaTrash from 'react-icons/lib/fa/trash-o';
-
-
 
 class PlaceItem extends Component{
 
