@@ -95,8 +95,10 @@ export const clearSuggestions = (text) => ({
 
 export const fetchSuggestions = (text, type) => dispatch => {
     suggesters.forEach((suggester) => {
-        dispatch(requestSuggestions(text, type));
-        if (suggester.getType() === type) suggester.getSuggestions(text, (text, items, type) => {dispatch(receiveSuggestions(text, items, type))});
+        if (suggester.getType() === type) {
+            dispatch(requestSuggestions(text, type));
+            suggester.getSuggestions(text, (text, items, type) => {dispatch(receiveSuggestions(text, items, type))});
+        }
     });
 };
 

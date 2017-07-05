@@ -7,7 +7,7 @@ describe ("app reducer", () => {
         currentText: "",
         currentSearch: "",
         maxSuggestions: 10,
-        loadingSuggestions: false,
+        loadingSuggesters: {},
     };
     it('should handle empty initial state', () => {
         state = suggestions(
@@ -15,10 +15,10 @@ describe ("app reducer", () => {
                         suggestions(
                             suggestions(
                                 suggestions(state,  Actions.inputChange("libertador")),
-                                Actions.requestSuggestions("libertador")),
+                                Actions.requestSuggestions("libertador", "STREET_TYPE")),
                             Actions.inputChange("libertado")),
-                        Actions.requestSuggestions("libertado")),
-                Actions.receiveSuggestions("libertador", [{title: "calle", subTitle: "Direccion"}])
+                        Actions.requestSuggestions("libertado", "STREET_TYPE")),
+                Actions.receiveSuggestions("libertador", [{title: "calle", subTitle: "Direccion"}], "STREET_TYPE")
         );
 
         expect(
@@ -28,12 +28,12 @@ describe ("app reducer", () => {
             currentText: "libertado",
             currentSearch: "",
             maxSuggestions: 10,
-            loadingSuggestions: false,
+            loadingSuggesters: {"STREET_TYPE": 1},
             }
         )
     });
     it('should handle empty initial state', () => {
-        state = suggestions(state, Actions.receiveSuggestions("libertado", [{title: "calle", subTitle: "Direccion"}]));
+        state = suggestions(state, Actions.receiveSuggestions("libertado", [{title: "calle", subTitle: "Direccion"}], "STREET_TYPE"));
         expect(
             state
         ).toEqual({
@@ -41,7 +41,7 @@ describe ("app reducer", () => {
             currentText: "libertado",
             currentSearch: "libertado",
             maxSuggestions: 10,
-            loadingSuggestions: false,
+            loadingSuggesters: {"STREET_TYPE": 0},
             }
         )
     });

@@ -75,7 +75,7 @@ const mapStateToProps = state => {
         suggestions: state.suggestions.currentSuggestions,
         currentText : state.suggestions.currentText,
         places: state.places.myPlaces,
-        loading: Object.values(state.suggestions.loadingSuggesters).includes(true) || state.places.loadingData,
+        loading: Object.values(state.suggestions.loadingSuggesters).filter(d => d !== 0).length > 0 || state.places.loadingData,
     }
 };
 

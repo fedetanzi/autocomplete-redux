@@ -32,9 +32,9 @@ class Input extends Component{
         const query = e.target.value;
         this.setState({ value : query  , lastInputTime: Date.now() });
         this.props.inputChange(query);
-        if (query.length <= this.props.length_query  ) {
+        if (!query) {
             this.props.clearSuggestions(query)
-        }else{
+        }else if(query.length > this.props.length_query){
             setTimeout(() => {
                 if (Date.now() - this.state.lastInputTime >= this.props.suggest_delay_street) {
                     this.props.fetchSuggestions(this.state.value, STREET_TYPE)

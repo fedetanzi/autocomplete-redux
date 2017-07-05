@@ -13,7 +13,7 @@ describe ("suggestions reducer", () => {
                 currentText: "",
                 currentSearch: "",
                 maxSuggestions: 10,
-                loadingSuggestions: false,
+                loadingSuggesters: {},
             }
         )
     });
@@ -40,16 +40,19 @@ describe ("suggestions reducer", () => {
             suggestions({
                 currentSuggestions: [],
                 currentText: "libertador",
-                currentSearch: ""
+                currentSearch: "",
+                loadingSuggesters: {},
             }, {
                 type: types.REQUEST_SUGGESTIONS,
-                text: "libertador"
+                text: "libertador",
+                suggesterType: "STREET_TYPE",
+
             })
         ).toEqual({
             currentSuggestions: [],
             currentText: "libertador",
             currentSearch: "",
-            loadingSuggestions: true,
+            loadingSuggesters: {"STREET_TYPE": 1},
         })
     });
 
@@ -59,7 +62,8 @@ describe ("suggestions reducer", () => {
             suggestions({
                 currentSuggestions: [],
                 currentText: "libertador",
-                currentSearch: "libertador"
+                currentSearch: "libertador",
+                loadingSuggesters: {},
             }, {
                 type: types.RECEIVE_SUGGESTIONS,
                 suggestions: [
@@ -68,7 +72,8 @@ describe ("suggestions reducer", () => {
                         subtitle: "My region"
                     }
                 ],
-                text: "libertador"
+                text: "libertador",
+                suggesterType: "STREET_TYPE",
             })
         ).toEqual({
             currentSuggestions: [{
@@ -77,7 +82,7 @@ describe ("suggestions reducer", () => {
             }],
             currentText: "libertador",
             currentSearch: "libertador",
-            loadingSuggestions: false,
+            loadingSuggesters: {"STREET_TYPE": 0},
         });
         // Add a suggestion with existing current suggestions.
         expect(
@@ -87,7 +92,8 @@ describe ("suggestions reducer", () => {
                     subtitle: "My region"
                 }],
                 currentText: "libertador",
-                currentSearch: "libertador"
+                currentSearch: "libertador",
+                loadingSuggesters: {"STREET_TYPE": 1},
             }, {
                 type: types.RECEIVE_SUGGESTIONS,
                 suggestions: [
@@ -96,7 +102,8 @@ describe ("suggestions reducer", () => {
                         subtitle: "My region"
                     }
                 ],
-                text: "libertador"
+                text: "libertador",
+                suggesterType: "STREET_TYPE",
             })
         ).toEqual({
             currentSuggestions: [
@@ -110,7 +117,7 @@ describe ("suggestions reducer", () => {
                 }],
             currentText: "libertador",
             currentSearch: "libertador",
-            loadingSuggestions: false,
+            loadingSuggesters: {"STREET_TYPE": 0},
         });
         // Reset the suggestions to an empty list.
         expect(
@@ -121,7 +128,9 @@ describe ("suggestions reducer", () => {
                     subtitle: "My region"
                 }],
                 currentText: "",
-                currentSearch: ""
+                currentSearch: "",
+                loadingSuggesters: {},
+
             }, {
                 type: types.RECEIVE_SUGGESTIONS,
                 suggestions: [
@@ -132,14 +141,15 @@ describe ("suggestions reducer", () => {
             currentSuggestions: [],
             currentText: "",
             currentSearch: "",
-            loadingSuggestions: false,
+            loadingSuggesters: {},
         });
         // Try to add a suggestion when currentText is different than the action text.
         expect(
             suggestions({
                 currentSuggestions: [],
                 currentText: "libertador",
-                currentSearch: "libertador"
+                currentSearch: "libertador",
+                loadingSuggesters: {"STREET_TYPE": 1},
             }, {
                 type: types.RECEIVE_SUGGESTIONS,
                 suggestions: [
@@ -148,13 +158,14 @@ describe ("suggestions reducer", () => {
                         subtitle: "My region"
                     }
                 ],
-                text: "santa fe"
+                text: "santa fe",
+                suggesterType: "STREET_TYPE",
             })
         ).toEqual({
             currentSuggestions: [],
             currentText: "libertador",
             currentSearch: "libertador",
-            loadingSuggestions: false,
+            loadingSuggesters: {"STREET_TYPE": 0},
         });
         // Try to add more suggestions than the limit.
         expect(
@@ -163,6 +174,7 @@ describe ("suggestions reducer", () => {
                 currentText: "libertador",
                 currentSearch: "libertador",
                 maxSuggestions: 2,
+                loadingSuggesters: {"STREET_TYPE": 1},
             }, {
                 type: types.RECEIVE_SUGGESTIONS,
                 suggestions: [
@@ -183,7 +195,8 @@ describe ("suggestions reducer", () => {
                         subtitle: "My region"
                     }
                 ],
-                text: "libertador"
+                text: "libertador",
+                suggesterType: "STREET_TYPE",
             })
         ).toEqual({
             currentSuggestions: [{
@@ -197,7 +210,7 @@ describe ("suggestions reducer", () => {
             currentText: "libertador",
             currentSearch: "libertador",
             maxSuggestions: 2,
-            loadingSuggestions: false,
+            loadingSuggesters: {"STREET_TYPE": 0},
         })
     });
 });

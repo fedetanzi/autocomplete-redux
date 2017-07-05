@@ -14,7 +14,7 @@ const initialState = {
 const suggestions = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_SUGGESTIONS:
-            state.loadingSuggesters[action.suggesterType] = false;
+            if (action.suggesterType) state.loadingSuggesters[action.suggesterType] = typeof state.loadingSuggesters[action.suggesterType] !== 'undefined' ? --state.loadingSuggesters[action.suggesterType] : 0;
 
             return Object.assign({}, state, {
                 ...state,
@@ -26,7 +26,8 @@ const suggestions = (state = initialState, action) => {
                 currentSearch: action.text === state.currentText ? action.text : state.currentSearch,
             });
         case REQUEST_SUGGESTIONS:
-            state.loadingSuggesters[action.suggesterType] = true;
+            console.log ("equest");
+            if (action.suggesterType) state.loadingSuggesters[action.suggesterType] = typeof state.loadingSuggesters[action.suggesterType] !== 'undefined' ? ++state.loadingSuggesters[action.suggesterType] : 1;
             return Object.assign({}, state, {
                 ...state,
             });
