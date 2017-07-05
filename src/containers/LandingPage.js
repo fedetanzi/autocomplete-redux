@@ -9,6 +9,7 @@ import {Col, Grid, Row} from "react-bootstrap";
 import PlaceList from "../components/PlaceList";
 import FaLoading from 'react-icons/lib/fa/circle-o-notch';
 import style from './LandingPage.css';
+import {PLACE_TYPE, STREET_TYPE} from "../constants/ActionTypes";
 
 
 class LandingPage extends Component {
@@ -25,12 +26,14 @@ class LandingPage extends Component {
         showSuggestions : false,
         minLength: 2,
     };
-    handleChange(){
-        this.setState({showSuggestions : true});
+
+    handleChange(value){
+        this.setState({showSuggestions : value});
     }
     handleClick(){
         this.setState({showSuggestions : false});
     }
+
     render() {
         const showLoader = !this.props.loading ? {"display": "none"} : {};
         const errorMessage = !this.props.loading && this.props.suggestions.length === 0 && this.props.currentText.length > this.state.minLength ?
@@ -45,7 +48,7 @@ class LandingPage extends Component {
                 <div className="input-div">
                     <Grid>
                         <Row className="show-grid">
-                            <Col xs={12} md={6} sm={12} lg={6} xl={6}>
+                            <Col xs={12} md={6} sm={12} lg={6}>
                                 <Row>
                                     <Col lg={6} className="vcenter">
                                         <h1>Mis Lugares</h1>
@@ -56,15 +59,29 @@ class LandingPage extends Component {
                                 </Row>
                                 <Row>
                                     <Col lg={12}>
-                                        <Input change={() => this.handleChange()} text={this.props.currentText} length_query={this.state.minLength} suggest_delay_place={800} suggest_delay_street={400} {...this.props.actions}/>
+                                        <Input
+                                            change={(value) => this.handleChange(value)}
+                                            text={this.props.currentText}
+                                            length_query={this.state.minLength}
+                                            suggest_delay_place={800}
+                                            suggest_delay_street={400}
+                                            fetchSuggestionsPlace={(value) => this.props.actions.fetchSuggestions(value, PLACE_TYPE)}
+                                            fetchSuggestionsStreet={(value) => this.props.actions.fetchSuggestions(value, STREET_TYPE)}
+                                            {...this.props.actions}
+                                         />
                                         <div >
-                                            <SuggestionList itemClick={() => {this.handleClick()}} showSuggestions={this.state.showSuggestions} options={this.props.suggestions} {...this.props.actions}/>
+                                            <SuggestionList
+                                                itemClick={() => {this.handleClick()}}
+                                                showSuggestions={this.state.showSuggestions}
+                                                options={this.props.suggestions}
+                                                {...this.props.actions}
+                                            />
                                         </div>
                                         {errorMessage}
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col xs={12} md={6} lg={6} xl={6} sm={12}>
+                            <Col xs={12} md={6} lg={6} sm={12}>
                                 <PlaceList places={this.props.places} {...this.props.actions}/>
                             </Col>
                         </Row>
