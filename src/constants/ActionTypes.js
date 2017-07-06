@@ -6,5 +6,7 @@ export const RECEIVE_PLACE_DATA = 'RECEIVE_PLACE_DATA';
 export const REQUEST_PLACE_DATA = 'REQUEST_PLACE_DATA';
 export const INPUT_CHANGE = 'INPUT_CHANGE';
 export const DELETE_PLACE = 'DELETE_PLACE';
+export const CLEAR_SUGGESTIONS = 'CLEAR_SUGGESTIONS';
 export const STREET_TYPE = 'STREET_TYPE';
 export const PLACE_TYPE = 'PLACE_TYPE';
+export const DIRECTION_TYPE = 'Dirección';
