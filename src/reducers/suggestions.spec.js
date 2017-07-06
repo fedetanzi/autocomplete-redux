@@ -14,6 +14,7 @@ describe ("suggestions reducer", () => {
                 currentSearch: "",
                 maxSuggestions: 10,
                 loadingSuggesters: {},
+                requestIndex: 0,
             }
         )
     });
