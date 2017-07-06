@@ -46,6 +46,7 @@ const suggestions = (state = initialState, action) => {
             return Object.assign({}, state, {
                 ...state,
                 currentText: action.text,
+                currentSuggestions: [],
             });
         case REHYDRATE:
             let incoming = action.payload.suggestions;
